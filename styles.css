@@ -190,14 +190,20 @@ body {
 }
 
 .about-image {
-    background: var(--light);
-    height: 500px;
     border-radius: 12px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--secondary);
-    font-size: 1.1rem;
+    overflow: hidden;
+    height: auto; /* Убираем фиксированную высоту */
+}
+
+.about-img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 12px;
+}
+
+.image-placeholder {
+    display: none;
 }
 
 /* Секция НОМЕРА */
