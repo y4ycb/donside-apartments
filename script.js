@@ -101,7 +101,7 @@ const apartments = {
 let currentApartment = null;
 let currentImageIndex = 0;
 
-// Функции модального окна
+// Функции модального окна галереи
 function openApartmentModal(apartmentId) {
     currentApartment = apartments[apartmentId];
     currentImageIndex = 0;
@@ -173,18 +173,257 @@ function closeApartmentModal() {
     currentImageIndex = 0;
 }
 
-// Закрытие по ESC
-document.addEventListener('keydown', function(e) {
-    if (e.key === 'Escape') closeApartmentModal();
-    if (e.key === 'ArrowRight') nextImage();
-    if (e.key === 'ArrowLeft') prevImage();
-});
+// Функции для модального окна бронирования
+function openBookingModal(apartmentId = '') {
+    const modal = document.getElementById('bookingModal');
+    
+    // Если передан ID квартиры, выбираем её в форме
+    if (apartmentId && document.getElementById('bookingApartment')) {
+        document.getElementById('bookingApartment').value = apartmentId;
+    }
+    
+    // Устанавливаем минимальную дату - сегодня
+    const today = new Date().toISOString().split('T')[0];
+    const checkinInput = document.getElementById('bookingCheckin');
+    const checkoutInput = document.getElementById('bookingCheckout');
+    
+    if (checkinInput) {
+        checkinInput.min = today;
+        checkinInput.value = ''; // Сбрасываем значение
+    }
+    if (checkoutInput) {
+        checkoutInput.min = today;
+        checkoutInput.value = ''; // Сбрасываем значение
+    }
+    
+    modal.style.display = 'block';
+    document.body.style.overflow = 'hidden';
+}
 
-// Закрытие по клику на оверлей
-document.querySelector('.modal-overlay').addEventListener('click', closeApartmentModal);
+function closeBookingModal() {
+    const modal = document.getElementById('bookingModal');
+    modal.style.display = 'none';
+    document.body.style.overflow = 'auto';
+}
 
-// МОБИЛЬНОЕ МЕНЮ
+// Валидация формы бронирования
+function setupBookingForm() {
+    const form = document.getElementById('bookingForm');
+    const checkinInput = document.getElementById('bookingCheckin');
+    const checkoutInput = document.getElementById('bookingCheckout');
+    
+    if (!form) return;
+    
+    // Обновляем минимальную дату для выезда при выборе заезда
+    if (checkinInput) {
+        checkinInput.addEventListener('change', function() {
+            if (this.value && checkoutInput) {
+                checkoutInput.min = this.value;
+                // Если дата выезда раньше даты заезда - сбрасываем
+                if (checkoutInput.value && checkoutInput.value <= this.value) {
+                    checkoutInput.value = '';
+                }
+            }
+        });
+    }
+    
+    // Обработка отправки формы
+    form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        // Базовая валидация
+        if (!validateBookingForm()) {
+            return;
+        }
+        
+        // Показываем успешную отправку
+        showBookingSuccess();
+    });
+}
+
+// Валидация данных формы
+function validateBookingForm() {
+    const checkin = document.getElementById('bookingCheckin');
+    const checkout = document.getElementById('bookingCheckout');
+    const name = document.getElementById('bookingName');
+    const phone = document.getElementById('bookingPhone');
+    const apartment = document.getElementById('bookingApartment');
+    
+    if (!checkin || !checkout || !name || !phone || !apartment) {
+        alert('Ошибка: не все поля формы найдены');
+        return false;
+    }
+    
+    // Проверка обязательных полей
+    if (!checkin.value || !checkout.value || !name.value || !phone.value || !apartment.value) {
+        alert('Пожалуйста, заполните все обязательные поля');
+        return false;
+    }
+    
+    // Проверка что дата выезда после даты заезда
+    if (checkout.value <= checkin.value) {
+        alert('Дата выезда должна быть после даты заезда');
+        return false;
+    }
+    
+    // Проверка минимального бронирования (1 ночь)
+    const checkinDate = new Date(checkin.value);
+    const checkoutDate = new Date(checkout.value);
+    const nights = Math.ceil((checkoutDate - checkinDate) / (1000 * 60 * 60 * 24));
+    
+    if (nights < 1) {
+        alert('Минимальное бронирование - 1 ночь');
+        return false;
+    }
+    
+    // Базовая проверка телефона (хотя бы 10 цифр)
+    const phoneDigits = phone.value.replace(/\D/g, '');
+    if (phoneDigits.length < 10) {
+        alert('Пожалуйста, введите корректный номер телефона');
+        return false;
+    }
+    
+    return true;
+}
+
+// Получение данных формы
+function getFormData() {
+    const checkin = document.getElementById('bookingCheckin').value;
+    const checkout = document.getElementById('bookingCheckout').value;
+    const apartment = document.getElementById('bookingApartment');
+    const name = document.getElementById('bookingName').value;
+    const phone = document.getElementById('bookingPhone').value;
+    const email = document.getElementById('bookingEmail').value;
+    const guests = document.getElementById('bookingGuests').value;
+    const comment = document.getElementById('bookingComment').value;
+    
+    // Расчет количества ночей
+    const checkinDate = new Date(checkin);
+    const checkoutDate = new Date(checkout);
+    const nights = Math.ceil((checkoutDate - checkinDate) / (1000 * 60 * 60 * 24));
+    
+    const apartmentText = apartment.options[apartment.selectedIndex].text;
+    
+    return {
+        checkin,
+        checkout,
+        nights,
+        apartment: apartmentText,
+        name,
+        phone,
+        email,
+        guests,
+        comment
+    };
+}
+
+// Отправка в Telegram
+async function sendToTelegram(formData) {
+    const BOT_TOKEN = '8569135069:AAGxg4hOGcSIaemwy1vusiHfNbkTflV5sKk';
+    const CHAT_IDS = [
+        2121761373,           // Ваш личный ID  
+        -1003253038474        // ID группы
+    ];
+    
+    const message = `
+🎯 НОВАЯ ЗАЯВКА НА БРОНИРОВАНИЕ
+
+🏠 Квартира: ${formData.apartment}
+📅 Даты: ${formData.checkin} - ${formData.checkout} (${formData.nights} ночей)
+👤 Гость: ${formData.name}
+📞 Телефон: ${formData.phone}
+📧 Email: ${formData.email || 'не указан'}
+👥 Гостей: ${formData.guests}
+💬 Комментарий: ${formData.comment || 'нет'}
+
+⏰ Время заявки: ${new Date().toLocaleString()}
+    `;
+    
+    try {
+        // Отправляем всем получателям из массива CHAT_IDS
+        const sendPromises = CHAT_IDS.map(chatId => 
+            fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    chat_id: chatId,
+                    text: message,
+                    parse_mode: 'HTML'
+                })
+            })
+        );
+        
+        // Ждем завершения всех отправок
+        const results = await Promise.all(sendPromises);
+        const jsonResults = await Promise.all(results.map(r => r.json()));
+        
+        // Проверяем что все сообщения отправлены успешно
+        const allSent = jsonResults.every(result => result.ok);
+        
+        return allSent;
+        
+    } catch (error) {
+        console.error('Ошибка отправки в Telegram:', error);
+        return false;
+    }
+}
+
+// Показ успешной отправки и отправка в Telegram
+async function showBookingSuccess() {
+    const form = document.getElementById('bookingForm');
+    const submitBtn = form.querySelector('.submit-btn');
+    
+    if (!submitBtn) return;
+    
+    // Сохраняем оригинальный текст
+    const originalText = submitBtn.textContent;
+    
+    // Меняем кнопку
+    submitBtn.textContent = 'Отправляем заявку...';
+    submitBtn.disabled = true;
+    
+    try {
+        // Получаем данные формы
+        const formData = getFormData();
+        
+        // Отправляем в Telegram
+        const isSent = await sendToTelegram(formData);
+        
+        if (isSent) {
+            submitBtn.textContent = 'Заявка отправлена!';
+            submitBtn.style.background = '#10b981';
+            
+            // Через 2 секунды закрываем форму
+            setTimeout(() => {
+                closeBookingModal();
+                form.reset();
+                submitBtn.textContent = originalText;
+                submitBtn.disabled = false;
+                submitBtn.style.background = '';
+                alert('Спасибо! Мы свяжемся с вами в течение 30 минут для подтверждения бронирования.');
+            }, 2000);
+        } else {
+            throw new Error('Не удалось отправить заявку');
+        }
+        
+    } catch (error) {
+        submitBtn.textContent = 'Ошибка отправки';
+        submitBtn.style.background = '#ef4444';
+        
+        setTimeout(() => {
+            submitBtn.textContent = originalText;
+            submitBtn.disabled = false;
+            submitBtn.style.background = '';
+            alert('Произошла ошибка при отправке. Пожалуйста, позвоните нам напрямую.');
+        }, 2000);
+    }
+}
+
+// Инициализация при загрузке
 document.addEventListener('DOMContentLoaded', function() {
+    // Мобильное меню
     const menuToggle = document.getElementById('menuToggle');
     const navList = document.querySelector('.nav-list');
     
@@ -195,13 +434,44 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
-    // Обработчики для кнопок
-    const bookButtons = document.querySelectorAll('.book-btn, .cta-button, .card-btn');
+    // Обработчики для кнопок бронирования
+    const bookButtons = document.querySelectorAll('.book-btn, .cta-button');
     bookButtons.forEach(btn => {
-        btn.addEventListener('click', function() {
-            alert('Форма бронирования будет добавлена позже!');
+        btn.addEventListener('click', function(e) {
+            e.preventDefault();
+            openBookingModal();
+        });
+    });
+    
+    // Кнопка "Подробнее" в карточках тоже открывает бронирование
+    const detailButtons = document.querySelectorAll('.card-btn');
+    detailButtons.forEach((btn, index) => {
+        btn.addEventListener('click', function(e) {
+            e.stopPropagation(); // Чтобы не открывалась галерея
+            openBookingModal((index + 1).toString());
+        });
+    });
+    
+    // Инициализация формы бронирования
+    setupBookingForm();
+    
+    // Закрытие модальных окон по клику на оверлей
+    document.querySelectorAll('.modal-overlay').forEach(overlay => {
+        overlay.addEventListener('click', function() {
+            closeApartmentModal();
+            closeBookingModal();
         });
     });
 });
 
-console.log('DonSide apartments grid loaded!');
+// Закрытие по ESC
+document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+        closeApartmentModal();
+        closeBookingModal();
+    }
+    if (e.key === 'ArrowRight') nextImage();
+    if (e.key === 'ArrowLeft') prevImage();
+});
+
+console.log('DonSide apartments grid loaded with Telegram booking!');
