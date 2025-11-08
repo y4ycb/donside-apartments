@@ -5,67 +5,84 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DonSide - Аренда квартир посуточно в Ростове-на-Дону</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 </head>
 <body>
     <!-- ОБНОВЛЁННАЯ ШАПКА -->
-    <header class="header">
+    <header class="header" role="banner">
         <div class="header-container">
-            <a href="#" class="logo">DONSIDE</a>
+            <a href="#" class="logo" aria-label="DonSide - главная страница">DONSIDE</a>
             
-            <nav class="nav">
+            <nav class="nav" role="navigation" aria-label="Основное меню">
                 <ul class="nav-list">
-                    <li><a href="#about">О нас</a></li>
-                    <li><a href="#rooms">Апартаменты</a></li>
-                    <li><a href="#contacts">Контакты</a></li>
+                    <li><a href="#about" aria-label="О нашей компании">О нас</a></li>
+                    <li><a href="#rooms" aria-label="Посмотреть квартиры">Квартиры</a></li>
+                    <li><a href="#contacts" aria-label="Контактная информация">Контакты</a></li>
                 </ul>
-                <button class="menu-toggle" id="menuToggle">☰</button>
+                <button class="menu-toggle" id="menuToggle" aria-label="Открыть меню" aria-expanded="false">☰</button>
             </nav>
             
-            <button class="book-btn">Забронировать</button>
+            <button class="book-btn" aria-label="Забронировать квартиру">Забронировать</button>
         </div>
     </header>
 
-    <!-- ГЛАВНЫЙ ЭКРАН -->
-    <section class="hero">
-        <div class="hero-content">
-            <h1 class="hero-title">DonSide Аренда квартир</h1>
-            <p class="hero-subtitle">Посуточная аренда квартир в центре Ростова-на-Дону</p>
-            <button class="cta-button">Выбрать квартиру</button>
-        </div>
-    </section>
+    <!-- ГЛАВНЫЙ ЭКРАН С ФОНОВЫМ ИЗОБРАЖЕНИЕМ -->
+<section class="hero">
+    <div class="hero-content">
+        <h1 class="hero-title">Апартаменты на набережной Дона с круглосуточным заселением</h1>
+        <p class="hero-subtitle">Ваш комфортный и безопасный отдых в сердце Ростова-на-Дону начинается с бесконтактного заселения 24/7.</p>
+        <button class="cta-button">Выбрать квартиру</button>
+    </div>
+</section>
 
     <!-- О НАС - ОБНОВЛЁННАЯ СЕКЦИЯ -->
     <section id="about" class="about">
-        <div class="about-container">
-            <div class="about-content">
-                <h2 class="about-title">DonSide — аренда квартир посуточно в центре Ростова-на-Дону</h2>
-                <p class="about-text">Мы предлагаем комфортные квартиры для краткосрочной аренды. У нас вы найдете уютное жилье со всем необходимым для приятного проживания.</p>
-                
-                <div class="about-features">
-                    <div class="feature">
-                        <h3>Современные номера</h3>
-                        <p>Полностью оборудованные кухни и стильный дизайн</p>
-                    </div>
-                    <div class="feature">
-                        <h3>Высокоскоростной Wi-Fi</h3>
-                        <p>Беспроводной интернет на всей территории</p>
-                    </div>
-                    <div class="feature">
-                        <h3>Круглосуточная поддержка</h3>
-                        <p>Всегда на связи для помощи нашим гостям</p>
-                    </div>
-                    <div class="feature">
-                        <h3>Бесплатная парковка</h3>
-                        <p>Удобная парковка для автомобилей гостей</p>
-                    </div>
+    <div class="about-container">
+        <div class="about-content">
+            <h2 class="about-title">DonSide — аренда квартир посуточно в центре Ростов-на-Дону</h2>
+            
+            <p class="about-text">
+                Забронируйте и заезжайте в любое удобное время! Мы заранее вышлем вам подробную инструкцию 
+                для легкого и самостоятельного заселения без личных встреч и ожидания.
+            </p>
+            
+            <p class="about-text">
+                Апартаменты расположены в современном жилом комплексе прямо на живописной набережной реки Дон. 
+                Это идеальная точка для знакомства с городом: лучшие кафе, рестораны и ночные клубы — 
+                в нескольких шагах от вашего порога.
+            </p>
+
+            <div class="about-features">
+                <div class="feature">
+                    <h3>📍 В шаговой доступности</h3>
+                    <p>Центральный рынок, бизнес-центр «Риверсайд Дон» со смотровой площадкой, транспортная развязка и ЖД вокзал</p>
+                </div>
+                <div class="feature">
+                    <h3>🏪 Инфраструктура ЖК</h3>
+                    <p>Супермаркет «Перекрёсток» на первом этаже, фитнес-клуб, салоны красоты, кофейни, магазины и аптеки</p>
+                </div>
+                <div class="feature">
+                    <h3>👨‍👩‍👧‍👦 Для всей семьи</h3>
+                    <p>Уникальная детская площадка на 4-м этаже с видом на Дон и охраняемый подземный паркинг</p>
+                </div>
+                <div class="feature">
+                    <h3>🎯 Идеальное расположение</h3>
+                    <p>Прямо на набережной Дона, в пешей доступности от всех ключевых мест города</p>
                 </div>
             </div>
-            
-            <div class="about-image">
-    <img src="images/glavmenu.jpg" alt="DonSide - аренда квартир посуточно в Ростове-на-Дону" class="about-img">
-</div>
+
+            <p class="about-text" style="margin-top: 2rem; font-weight: 600; color: var(--dark);">
+                Выберите эти апартаменты для поездки, где каждая деталь продумана для вашего комфорта.
+            </p>
         </div>
-    </section>
+        
+        <div class="about-image">
+            <img src="images/glavmenu.jpg" alt="DonSide - апартаменты на набережной Дона в Ростове-на-Дону" class="about-img">
+        </div>
+    </div>
+</section>
 
     <!-- НОМЕРА -->
     <section id="rooms" class="rooms">
@@ -150,53 +167,53 @@
     </section>
 
     <!-- СЕКЦИЯ КОНТАКТОВ -->
-<section id="contacts" class="contacts">
-    <div class="container">
-        <h2 class="section-title">Контакты</h2>
-        <div class="contacts-grid">
-            <div class="contact-info">
-                <h3>Свяжитесь с нами</h3>
-                <div class="contact-item">
-                    <div class="contact-icon">📞</div>
-                    <div class="contact-details">
-                        <strong>Телефон</strong>
-                        <p>+7 (999) 123-45-67</p>
-                        <p>+7 (988) 765-43-21</p>
+    <section id="contacts" class="contacts">
+        <div class="container">
+            <h2 class="section-title">Контакты</h2>
+            <div class="contacts-grid">
+                <div class="contact-info">
+                    <h3>Свяжитесь с нами</h3>
+                    <div class="contact-item">
+                        <div class="contact-icon">📞</div>
+                        <div class="contact-details">
+                            <strong>Телефон</strong>
+                            <p>+7 (999) 123-45-67</p>
+                            <p>+7 (988) 765-43-21</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">✉️</div>
+                        <div class="contact-details">
+                            <strong>Email</strong>
+                            <p>info@donside.ru</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">📍</div>
+                        <div class="contact-details">
+                            <strong>Адрес</strong>
+                            <p>г. Ростов-на-Дону, Центральный район</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">🕒</div>
+                        <div class="contact-details">
+                            <strong>Время связи</strong>
+                            <p>Круглосуточно, 24/7</p>
+                        </div>
                     </div>
                 </div>
-                <div class="contact-item">
-                    <div class="contact-icon">✉️</div>
-                    <div class="contact-details">
-                        <strong>Email</strong>
-                        <p>info@donside.ru</p>
+                
+                <div class="contact-map">
+                    <div class="map-placeholder">
+                        <div class="map-icon">🗺️</div>
+                        <p>Ростов-на-Дону, Центральный район</p>
+                        <small>Карта будет подключена позже</small>
                     </div>
-                </div>
-                <div class="contact-item">
-                    <div class="contact-icon">📍</div>
-                    <div class="contact-details">
-                        <strong>Адрес</strong>
-                        <p>г. Ростов-на-Дону, Центральный район</p>
-                    </div>
-                </div>
-                <div class="contact-item">
-                    <div class="contact-icon">🕒</div>
-                    <div class="contact-details">
-                        <strong>Время связи</strong>
-                        <p>Круглосуточно, 24/7</p>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="contact-map">
-                <div class="map-placeholder">
-                    <div class="map-icon">🗺️</div>
-                    <p>Ростов-на-Дону, Центральный район</p>
-                    <small>Карта будет подключена позже</small>
                 </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
 
     <!-- ПОДВАЛ -->
     <footer class="footer">
@@ -209,7 +226,7 @@
     <div id="apartmentModal" class="apartment-modal">
         <div class="modal-overlay" onclick="closeApartmentModal()"></div>
         <div class="modal-content">
-            <button class="modal-close" onclick="closeApartmentModal()">×</button>
+            <button class="modal-close" onclick="closeApartmentModal()" aria-label="Закрыть галерею">×</button>
             
             <!-- Основная галерея -->
             <div class="modal-gallery">
@@ -227,7 +244,7 @@
     <div id="bookingModal" class="booking-modal">
         <div class="modal-overlay" onclick="closeBookingModal()"></div>
         <div class="booking-modal-content">
-            <button class="modal-close" onclick="closeBookingModal()">×</button>
+            <button class="modal-close" onclick="closeBookingModal()" aria-label="Закрыть форму бронирования">×</button>
             
             <div class="booking-header">
                 <h2>Забронировать квартиру</h2>
@@ -271,6 +288,7 @@
                     <div class="form-group">
                         <label for="bookingPhone">Телефон *</label>
                         <input type="tel" id="bookingPhone" name="phone" placeholder="+7 (999) 123-45-67" required>
+                        <span class="phone-hint">Формат: +7 (999) 123-45-67</span>
                     </div>
                 </div>
 
@@ -297,7 +315,13 @@
                 </div>
 
                 <div class="form-submit">
-                    <button type="submit" class="submit-btn">Отправить заявку на бронирование</button>
+                    <button type="submit" class="submit-btn">
+                        <span class="btn-text">Отправить заявку на бронирование</span>
+                        <span class="btn-loading">
+                            <span class="loading-spinner"></span>
+                            Отправляем...
+                        </span>
+                    </button>
                     <p class="form-note">* Обязательные поля для заполнения</p>
                 </div>
             </form>

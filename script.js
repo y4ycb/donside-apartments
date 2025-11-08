@@ -98,6 +98,199 @@ const apartments = {
     }
 };
 
+// Функция для обработки ошибок загрузки изображений
+function setupImageErrorHandling() {
+    // Для карточек квартир
+    document.querySelectorAll('.card-image img, .about-img').forEach(img => {
+        img.addEventListener('error', function() {
+            this.src = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjMwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjZjhmYWZjIi8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxOCIgZmlsbD0iIzk0YTBhZSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZHk9Ii4zZW0iPkltYWdlIG5vdCBmb3VuZDwvdGV4dD48L3N2Zz4=';
+            this.alt = 'Изображение временно недоступно';
+            this.classList.add('image-fallback');
+        });
+    });
+}
+
+// Функция предзагрузки изображений для галереи
+function preloadImages(imageUrls) {
+    imageUrls.forEach(src => {
+        const img = new Image();
+        img.src = src;
+    });
+}
+
+// Функция ленивой загрузки для карточек квартир
+function setupLazyLoading() {
+    const lazyImages = document.querySelectorAll('.card-image img[loading="lazy"]');
+    
+    if ('IntersectionObserver' in window) {
+        const imageObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const img = entry.target;
+                    // Убедимся, что изображение еще не загружено
+                    if (img.dataset.src) {
+                        img.src = img.dataset.src;
+                        img.classList.remove('lazy');
+                    }
+                    imageObserver.unobserve(img);
+                }
+            });
+        });
+
+        lazyImages.forEach(img => {
+            // Сохраняем оригинальный src в data-src
+            img.dataset.src = img.src;
+            // Заменяем на маленькое placeholder изображение
+            img.src = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjMwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjZjhmYWZjIi8+PC9zdmc+';
+            img.classList.add('lazy');
+            imageObserver.observe(img);
+        });
+    }
+}
+
+// Функция для маски телефона
+function setupPhoneMask() {
+    const phoneInput = document.getElementById('bookingPhone');
+    if (!phoneInput) return;
+
+    // Устанавливаем начальное значение
+    phoneInput.value = '+7 (';
+    
+    phoneInput.addEventListener('input', function(e) {
+        let value = e.target.value.replace(/\D/g, '');
+        
+        // Убираем начальную 7 или 8
+        if (value.startsWith('7') || value.startsWith('8')) {
+            value = value.substring(1);
+        }
+        
+        // Ограничиваем длину (10 цифр после +7)
+        if (value.length > 10) {
+            value = value.substring(0, 10);
+        }
+        
+        // Форматируем номер
+        let formattedValue = '+7 (';
+        
+        if (value.length > 0) {
+            formattedValue += value.substring(0, 3);
+        }
+        if (value.length > 3) {
+            formattedValue += ') ' + value.substring(3, 6);
+        }
+        if (value.length > 6) {
+            formattedValue += '-' + value.substring(6, 8);
+        }
+        if (value.length > 8) {
+            formattedValue += '-' + value.substring(8, 10);
+        }
+        
+        e.target.value = formattedValue;
+    });
+
+    // Валидация при уходе с поля
+    phoneInput.addEventListener('blur', function() {
+        const digits = this.value.replace(/\D/g, '');
+        if (digits.length !== 11) {
+            this.style.borderColor = '#ef4444';
+            this.style.backgroundColor = '#fef2f2';
+        } else {
+            this.style.borderColor = '';
+            this.style.backgroundColor = '';
+        }
+    });
+
+    // Очистка стилей при фокусе
+    phoneInput.addEventListener('focus', function() {
+        this.style.borderColor = '';
+        this.style.backgroundColor = '';
+    });
+
+    // Обработка Backspace и Delete
+    phoneInput.addEventListener('keydown', function(e) {
+        if (e.key === 'Backspace' || e.key === 'Delete') {
+            // Если пытаются удалить начало маски, предотвращаем
+            if (this.value.length <= 4) {
+                e.preventDefault();
+                this.value = '+7 (';
+            }
+        }
+    });
+}
+
+// Функция для валидации телефона
+function validatePhone(phone) {
+    const digits = phone.replace(/\D/g, '');
+    return digits.length === 11; // +7 + 10 цифр
+}
+
+// Функция для улучшения мобильного UX
+function enhanceMobileUX() {
+    // Предотвращаем масштабирование при фокусе на полях ввода в iOS
+    document.addEventListener('touchstart', function() {}, { passive: true });
+    
+    // Улучшаем работу галереи на тач-устройствах
+    let touchStartX = 0;
+    let touchEndX = 0;
+    
+    document.addEventListener('touchstart', function(e) {
+        if (e.target.closest('.modal-gallery')) {
+            touchStartX = e.changedTouches[0].screenX;
+        }
+    }, { passive: true });
+    
+    document.addEventListener('touchend', function(e) {
+        if (e.target.closest('.modal-gallery')) {
+            touchEndX = e.changedTouches[0].screenX;
+            handleSwipe();
+        }
+    }, { passive: true });
+    
+    function handleSwipe() {
+        const swipeThreshold = 50;
+        const diff = touchStartX - touchEndX;
+        
+        if (Math.abs(diff) > swipeThreshold) {
+            if (diff > 0) {
+                // Свайп влево - следующее фото
+                nextImage();
+            } else {
+                // Свайп вправо - предыдущее фото
+                prevImage();
+            }
+        }
+    }
+    
+    // Закрываем модальные окна при клике вне контента (уже есть, но улучшим для мобильных)
+    document.addEventListener('touchstart', function(e) {
+        if (e.target.classList.contains('modal-overlay')) {
+            closeApartmentModal();
+            closeBookingModal();
+        }
+    }, { passive: true });
+}
+
+function setupHeaderScroll() {
+    const header = document.querySelector('.header');
+    const hero = document.querySelector('.hero');
+    
+    if (!header || !hero) return;
+    
+    function updateHeader() {
+        const scrollY = window.scrollY;
+        const heroHeight = hero.offsetHeight;
+        
+        if (scrollY > heroHeight - 100) {
+            header.classList.add('scrolled');
+        } else {
+            header.classList.remove('scrolled');
+        }
+    }
+    
+    window.addEventListener('scroll', updateHeader);
+    updateHeader();
+}
+
 let currentApartment = null;
 let currentImageIndex = 0;
 
@@ -113,11 +306,25 @@ function openApartmentModal(apartmentId) {
         return;
     }
     
+    // Предзагрузка изображений галереи
+    preloadImages(currentApartment.images);
+    
     // Создаем галерею и миниатюры
     updateGallery();
     
     modal.style.display = 'block';
     document.body.style.overflow = 'hidden';
+    
+    // Обработка ошибок для модалки
+    setTimeout(() => {
+        document.querySelectorAll('.modal-gallery img, .modal-thumbnails img').forEach(img => {
+            img.addEventListener('error', function() {
+                this.src = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjMwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjZjhmYWZjIi8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxOCIgZmlsbD0iIzk0YTBhZSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZHk9Ii4zZW0iPkltYWdlIG5vdCBmb3VuZDwvdGV4dD48L3N2Zz4=';
+                this.alt = 'Фото недоступно';
+                this.classList.add('image-fallback');
+            });
+        });
+    }, 100);
 }
 
 function updateGallery() {
@@ -130,8 +337,8 @@ function updateGallery() {
     gallery.innerHTML = `
         <div class="main-image-container">
             <img src="${currentApartment.images[currentImageIndex]}" alt="${currentApartment.title} - Фото ${currentImageIndex + 1}" class="main-image">
-            <button class="gallery-nav gallery-prev" onclick="prevImage()">‹</button>
-            <button class="gallery-nav gallery-next" onclick="nextImage()">›</button>
+            <button class="gallery-nav gallery-prev" onclick="prevImage()" aria-label="Предыдущее фото">‹</button>
+            <button class="gallery-nav gallery-next" onclick="nextImage()" aria-label="Следующее фото">›</button>
             <div class="image-counter">${currentImageIndex + 1} / ${currentApartment.images.length}</div>
         </div>
     `;
@@ -206,41 +413,6 @@ function closeBookingModal() {
     document.body.style.overflow = 'auto';
 }
 
-// Валидация формы бронирования
-function setupBookingForm() {
-    const form = document.getElementById('bookingForm');
-    const checkinInput = document.getElementById('bookingCheckin');
-    const checkoutInput = document.getElementById('bookingCheckout');
-    
-    if (!form) return;
-    
-    // Обновляем минимальную дату для выезда при выборе заезда
-    if (checkinInput) {
-        checkinInput.addEventListener('change', function() {
-            if (this.value && checkoutInput) {
-                checkoutInput.min = this.value;
-                // Если дата выезда раньше даты заезда - сбрасываем
-                if (checkoutInput.value && checkoutInput.value <= this.value) {
-                    checkoutInput.value = '';
-                }
-            }
-        });
-    }
-    
-    // Обработка отправки формы
-    form.addEventListener('submit', function(e) {
-        e.preventDefault();
-        
-        // Базовая валидация
-        if (!validateBookingForm()) {
-            return;
-        }
-        
-        // Показываем успешную отправку
-        showBookingSuccess();
-    });
-}
-
 // Валидация данных формы
 function validateBookingForm() {
     const checkin = document.getElementById('bookingCheckin');
@@ -276,10 +448,22 @@ function validateBookingForm() {
         return false;
     }
     
-    // Базовая проверка телефона (хотя бы 10 цифр)
-    const phoneDigits = phone.value.replace(/\D/g, '');
-    if (phoneDigits.length < 10) {
-        alert('Пожалуйста, введите корректный номер телефона');
+    // ОБНОВЛЕННАЯ ПРОВЕРКА ТЕЛЕФОНА
+    if (!validatePhone(phone.value)) {
+        alert('Пожалуйста, введите корректный номер телефона (10 цифр после +7)');
+        phone.style.borderColor = '#ef4444';
+        phone.style.backgroundColor = '#fef2f2';
+        phone.focus();
+        return false;
+    }
+    
+    // Проверка имени (только буквы и пробелы)
+    const nameRegex = /^[a-zA-Zа-яА-ЯёЁ\s]+$/;
+    if (!nameRegex.test(name.value.trim())) {
+        alert('Пожалуйста, введите корректное имя (только буквы)');
+        name.style.borderColor = '#ef4444';
+        name.style.backgroundColor = '#fef2f2';
+        name.focus();
         return false;
     }
     
@@ -370,6 +554,124 @@ async function sendToTelegram(formData) {
     }
 }
 
+// Функция для показа уведомлений
+function showNotification(message, type = 'info') {
+    // Создаем элемент уведомления
+    const notification = document.createElement('div');
+    notification.className = `notification notification-${type}`;
+    notification.innerHTML = `
+        <div class="notification-content">
+            <span class="notification-message">${message}</span>
+            <button class="notification-close" aria-label="Закрыть уведомление">×</button>
+        </div>
+    `;
+    
+    // Добавляем стили для уведомления
+    if (!document.querySelector('#notification-styles')) {
+        const styles = document.createElement('style');
+        styles.id = 'notification-styles';
+        styles.textContent = `
+            .notification {
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                background: white;
+                border-radius: 8px;
+                box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+                border-left: 4px solid var(--accent);
+                z-index: 10000;
+                max-width: 400px;
+                animation: slideIn 0.3s ease;
+            }
+            
+            .notification-success {
+                border-left-color: #10b981;
+            }
+            
+            .notification-error {
+                border-left-color: #ef4444;
+            }
+            
+            .notification-content {
+                padding: 1rem;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                gap: 1rem;
+            }
+            
+            .notification-message {
+                flex: 1;
+                color: var(--dark);
+                font-size: 0.9rem;
+            }
+            
+            .notification-close {
+                background: none;
+                border: none;
+                font-size: 1.2rem;
+                cursor: pointer;
+                color: var(--secondary);
+                padding: 0;
+                width: 24px;
+                height: 24px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+            
+            .notification-close:hover {
+                color: var(--dark);
+            }
+            
+            @keyframes slideIn {
+                from {
+                    transform: translateX(100%);
+                    opacity: 0;
+                }
+                to {
+                    transform: translateX(0);
+                    opacity: 1;
+                }
+            }
+            
+            @media (max-width: 768px) {
+                .notification {
+                    left: 20px;
+                    right: 20px;
+                    max-width: none;
+                }
+            }
+        `;
+        document.head.appendChild(styles);
+    }
+    
+    // Добавляем уведомление на страницу
+    document.body.appendChild(notification);
+    
+    // Обработчик закрытия уведомления
+    notification.querySelector('.notification-close').addEventListener('click', function() {
+        notification.style.animation = 'slideIn 0.3s ease reverse';
+        setTimeout(() => {
+            if (notification.parentNode) {
+                notification.parentNode.removeChild(notification);
+            }
+        }, 300);
+    });
+    
+    // Автоматическое закрытие через 5 секунд
+    setTimeout(() => {
+        if (notification.parentNode) {
+            notification.style.animation = 'slideIn 0.3s ease reverse';
+            setTimeout(() => {
+                if (notification.parentNode) {
+                    notification.parentNode.removeChild(notification);
+                }
+            }, 300);
+        }
+    }, 5000);
+}
+
 // Показ успешной отправки и отправка в Telegram
 async function showBookingSuccess() {
     const form = document.getElementById('bookingForm');
@@ -378,11 +680,12 @@ async function showBookingSuccess() {
     if (!submitBtn) return;
     
     // Сохраняем оригинальный текст
-    const originalText = submitBtn.textContent;
+    const originalHtml = submitBtn.innerHTML;
     
-    // Меняем кнопку
-    submitBtn.textContent = 'Отправляем заявку...';
+    // Показываем состояние загрузки
+    submitBtn.classList.add('loading');
     submitBtn.disabled = true;
+    form.classList.add('form-loading');
     
     try {
         // Получаем данные формы
@@ -392,45 +695,118 @@ async function showBookingSuccess() {
         const isSent = await sendToTelegram(formData);
         
         if (isSent) {
-            submitBtn.textContent = 'Заявка отправлена!';
-            submitBtn.style.background = '#10b981';
+            // Успешная отправка
+            submitBtn.classList.remove('loading');
+            submitBtn.classList.add('success');
+            submitBtn.querySelector('.btn-text').textContent = '✅ Заявка отправлена!';
             
             // Через 2 секунды закрываем форму
             setTimeout(() => {
                 closeBookingModal();
                 form.reset();
-                submitBtn.textContent = originalText;
+                submitBtn.classList.remove('success', 'loading');
                 submitBtn.disabled = false;
-                submitBtn.style.background = '';
-                alert('Спасибо! Мы свяжемся с вами в течение 30 минут для подтверждения бронирования.');
+                submitBtn.innerHTML = originalHtml;
+                form.classList.remove('form-loading');
+                
+                // Показываем всплывающее уведомление
+                showNotification('Спасибо! Мы свяжемся с вами в течение 30 минут для подтверждения бронирования.', 'success');
             }, 2000);
         } else {
             throw new Error('Не удалось отправить заявку');
         }
         
     } catch (error) {
-        submitBtn.textContent = 'Ошибка отправки';
-        submitBtn.style.background = '#ef4444';
+        console.error('Ошибка отправки:', error);
+        
+        // Ошибка отправки
+        submitBtn.classList.remove('loading');
+        submitBtn.classList.add('error');
+        submitBtn.querySelector('.btn-text').textContent = '❌ Ошибка отправки';
         
         setTimeout(() => {
-            submitBtn.textContent = originalText;
+            submitBtn.classList.remove('error', 'loading');
             submitBtn.disabled = false;
-            submitBtn.style.background = '';
-            alert('Произошла ошибка при отправке. Пожалуйста, позвоните нам напрямую.');
+            submitBtn.innerHTML = originalHtml;
+            form.classList.remove('form-loading');
+            
+            // Показываем всплывающее уведомление об ошибке
+            showNotification('Произошла ошибка при отправке. Пожалуйста, позвоните нам напрямую.', 'error');
         }, 2000);
     }
 }
 
+// Валидация формы бронирования
+function setupBookingForm() {
+    const form = document.getElementById('bookingForm');
+    const checkinInput = document.getElementById('bookingCheckin');
+    const checkoutInput = document.getElementById('bookingCheckout');
+    
+    if (!form) return;
+    
+    let isSubmitting = false; // Защита от множественных отправок
+    
+    // Обновляем минимальную дату для выезда при выборе заезда
+    if (checkinInput) {
+        checkinInput.addEventListener('change', function() {
+            if (this.value && checkoutInput) {
+                checkoutInput.min = this.value;
+                if (checkoutInput.value && checkoutInput.value <= this.value) {
+                    checkoutInput.value = '';
+                }
+            }
+        });
+    }
+    
+    // Обработка отправки формы
+    form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        // Защита от множественных отправок
+        if (isSubmitting) return;
+        
+        // Базовая валидация
+        if (!validateBookingForm()) {
+            return;
+        }
+        
+        isSubmitting = true;
+        showBookingSuccess().finally(() => {
+            isSubmitting = false;
+        });
+    });
+}
+
 // Инициализация при загрузке
 document.addEventListener('DOMContentLoaded', function() {
+    setupImageErrorHandling();
+    setupLazyLoading();
+    enhanceMobileUX();
+    setupPhoneMask();
+    setupHeaderScroll();
+    
     // Мобильное меню
     const menuToggle = document.getElementById('menuToggle');
     const navList = document.querySelector('.nav-list');
     
     if (menuToggle && navList) {
         menuToggle.addEventListener('click', function() {
-            navList.classList.toggle('active');
-            menuToggle.textContent = navList.classList.contains('active') ? '✕' : '☰';
+            const isExpanded = navList.classList.toggle('active');
+            menuToggle.textContent = isExpanded ? '✕' : '☰';
+            menuToggle.setAttribute('aria-expanded', isExpanded);
+            
+            // Блокируем прокрутку тела при открытом меню
+            document.body.style.overflow = isExpanded ? 'hidden' : 'auto';
+        });
+        
+        // Закрываем меню при клике на ссылку
+        document.querySelectorAll('.nav-list a').forEach(link => {
+            link.addEventListener('click', function() {
+                navList.classList.remove('active');
+                menuToggle.textContent = '☰';
+                menuToggle.setAttribute('aria-expanded', 'false');
+                document.body.style.overflow = 'auto';
+            });
         });
     }
     
