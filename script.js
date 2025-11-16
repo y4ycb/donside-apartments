@@ -2,101 +2,138 @@
 const apartments = {
     1: {
         title: "Квартира 1",
+        number: "№118",
+        type: "Однокомнатная квартира",
+        location: "ЖК «Белый ангел», Береговая 6",
+        price: "4 000 ₽",
         description: "Просторная квартира с панорамными окнами и современным ремонтом. Идеально подходит для пар или небольшой семьи. Есть полностью оборудованная кухня и современная сантехника.",
-        price: "4 000 ₽/ночь",
         images: [
             "images/apartment-1-1.jpg",
             "images/apartment-1-2.jpg",
-            "images/apartment-1-3.jpg",
-            "images/apartment-1-4.jpg",
-            "images/apartment-1-5.jpg",
-            "images/apartment-1-6.jpg",
-            "images/apartment-1-7.jpg",
-            "images/apartment-1-8.jpg",
-            "images/apartment-1-9.jpg",
-            "images/apartment-1-10.jpg"
+            // ...
         ]
     },
     2: {
-        title: "Квартира 2", 
+        title: "Квартира 2",
+        number: "№131",
+        type: "Однокомнатная квартира",
+        location: "ЖК «Белый ангел», Береговая 6",
+        price: "4 000 ₽",
         description: "Двухкомнатная квартира с видом на город. Просторная гостиная и уютная спальня. Современная кухня-гостиная и большая ванная комната.",
-        price: "4 000 ₽/ночь",
         images: [
             "images/apartment-2-1.jpg",
-            "images/apartment-2-2.jpg",
-            "images/apartment-2-3.jpg",
-            "images/apartment-2-4.jpg",
-            "images/apartment-2-5.jpg",
-            "images/apartment-2-6.jpg",
-            "images/apartment-2-7.jpg",
-            "images/apartment-2-8.jpg",
-            "images/apartment-2-9.jpg",
-            "images/apartment-2-10.jpg",
-            "images/apartment-2-11.jpg",
-            "images/apartment-2-12.jpg"
+            // ...
         ]
     },
     3: {
         title: "Квартира 3",
+        number: "№144",
+        type: "Студия",
+        location: "ЖК «Белый ангел», Береговая 6",
+        price: "4 000 ₽",
         description: "Светлая квартира-студия с панорамными окнами. Современный дизайн, функциональная планировка. Идеально для молодых пар или бизнес-поездок.",
-        price: "4 000 ₽/ночь",
         images: [
             "images/apartment-3-1.jpg",
-            "images/apartment-3-2.jpg",
-            "images/apartment-3-3.jpg",
-            "images/apartment-3-4.jpg",
-            "images/apartment-3-5.jpg",
-            "images/apartment-3-6.jpg",
-            "images/apartment-3-7.jpg",
-            "images/apartment-3-8.jpg",
-            "images/apartment-3-9.jpg",
-            "images/apartment-3-10.jpg",
-            "images/apartment-3-11.jpg",
-            "images/apartment-3-12.jpg",
-            "images/apartment-3-13.jpg"
+            // ...
         ]
     },
     4: {
         title: "Квартира 4",
+        number: "№196",
+        type: "Двухкомнатная квартира",
+        location: "ЖК «Белый ангел», Береговая 6",
+        price: "4 000 ₽",
         description: "Просторная трёхкомнатная квартира для семьи. Две спальни, гостиная и большая кухня. Идеально для семейного отдыха или длительного проживания.",
-        price: "4 000 ₽/ночь",
         images: [
             "images/apartment-4-1.jpg",
-            "images/apartment-4-2.jpg",
-            "images/apartment-4-3.jpg",
-            "images/apartment-4-4.jpg",
-            "images/apartment-4-5.jpg",
-            "images/apartment-4-6.jpg",
-            "images/apartment-4-7.jpg",
-            "images/apartment-4-8.jpg",
-            "images/apartment-4-9.jpg",
-            "images/apartment-4-10.jpg",
-            "images/apartment-4-11.jpg",
-            "images/apartment-4-12.jpg",
-            "images/apartment-4-13.jpg",
-            "images/apartment-4-14.jpg"
+            // ...
         ]
     },
     5: {
         title: "Квартира 5",
+        number: "№214",
+        type: "Однокомнатная квартира",
+        location: "ЖК «Белый ангел», Береговая 6",
+        price: "4 000 ₽",
         description: "Уютная квартира с современным евроремонтом. Качественные отделочные материалы, новая техника. Отличный вариант для комфортного проживания.",
-        price: "4 000 ₽/ночь",
         images: [
             "images/apartment-5-1.jpg",
-            "images/apartment-5-2.jpg",
-            "images/apartment-5-3.jpg",
-            "images/apartment-5-4.jpg",
-            "images/apartment-5-5.jpg",
-            "images/apartment-5-6.jpg",
-            "images/apartment-5-7.jpg",
-            "images/apartment-5-8.jpg",
-            "images/apartment-5-9.jpg",
-            "images/apartment-5-10.jpg",
-            "images/apartment-5-11.jpg",
-            "images/apartment-5-12.jpg"
+            // ...
         ]
     }
 };
+
+function setupRoomsSlider() {
+    const img      = document.getElementById('roomsSliderImage');
+    const priceEl  = document.getElementById('roomsSliderPrice');
+    const numEl    = document.getElementById('roomsSliderNumber');
+    const typeEl   = document.getElementById('roomsSliderType');
+    const locEl    = document.getElementById('roomsSliderLocation');
+    const moreBtn  = document.getElementById('roomsSliderMore');
+    const dotsBox  = document.getElementById('roomsSliderDots');
+    const dots     = dotsBox ? dotsBox.querySelectorAll('.rooms-dot') : [];
+    const prevBtn  = document.querySelector('.rooms-slider-arrow-prev');
+    const nextBtn  = document.querySelector('.rooms-slider-arrow-next');
+
+    if (!img || !dots.length) return;
+
+    let currentIndex = 0; // индекс точки (0..N-1)
+
+    function applyByIndex(i) {
+        const dot = dots[i];
+        if (!dot) return;
+
+        const aptId = Number(dot.getAttribute('data-apartment-id'));
+        const apt   = apartments[aptId];
+        if (!apt || !apt.images || !apt.images.length) return;
+
+        currentIndex = i;
+
+        // точки
+        dots.forEach(d => d.classList.remove('active'));
+        dot.classList.add('active');
+
+        // фото
+        img.src = apt.images[0];
+        img.alt = `${apt.title} — фото`;
+        img.dataset.apartmentId = String(aptId);
+
+        // текст
+        if (priceEl) priceEl.textContent = apt.price;
+        if (numEl)   numEl.textContent   = apt.number;
+        if (typeEl)  typeEl.textContent  = apt.type;
+        if (locEl)   locEl.textContent   = apt.location;
+    }
+
+    // клики по точкам
+    dots.forEach((dot, i) => {
+        dot.addEventListener('click', () => applyByIndex(i));
+    });
+
+    // стрелки
+    prevBtn && prevBtn.addEventListener('click', () => {
+        const i = (currentIndex - 1 + dots.length) % dots.length;
+        applyByIndex(i);
+    });
+
+    nextBtn && nextBtn.addEventListener('click', () => {
+        const i = (currentIndex + 1) % dots.length;
+        applyByIndex(i);
+    });
+
+    // стартовое состояние: активная точка или первая
+    const initialIndex = Array.from(dots).findIndex(d => d.classList.contains('active'));
+    applyByIndex(initialIndex >= 0 ? initialIndex : 0);
+
+    // "Узнать больше" — пока просто открываем форму бронирования
+    if (moreBtn) {
+        moreBtn.addEventListener('click', () => {
+            const aptId = Number(img.dataset.apartmentId || '1');
+            // здесь можем передавать ID квартиры в форму
+            openBookingModal(String(aptId));
+        });
+    }
+}
 
 // Функция для обработки ошибок загрузки изображений
 function setupImageErrorHandling() {
@@ -488,6 +525,46 @@ async function sendToTelegram(formData) {
   return data.ok;
 }
 
+function setupRoomsPhotoCarousel() {
+    const mainImg = document.getElementById('roomsGalleryImage');
+    const dots = document.querySelectorAll('.rooms-dot');
+
+    if (!mainImg || !dots.length) return;
+
+    function setApartment(id) {
+        const apt = apartments[id];
+        if (!apt || !apt.images || !apt.images.length) return;
+
+        mainImg.src = apt.images[0];
+        mainImg.alt = `${apt.title} — фото`;
+        mainImg.dataset.apartmentId = id;
+    }
+
+    // клики по точкам
+    dots.forEach((dot) => {
+        dot.addEventListener('click', () => {
+            const id = dot.getAttribute('data-apartment-id');
+
+            dots.forEach(d => d.classList.remove('active'));
+            dot.classList.add('active');
+
+            setApartment(id);
+        });
+    });
+
+    // стартовое состояние — по активной точке
+    const activeDot = document.querySelector('.rooms-dot.active') || dots[0];
+    if (activeDot) {
+        setApartment(activeDot.getAttribute('data-apartment-id'));
+    }
+
+    // клик по большому фото — открыть модалку с галереей этой квартиры
+    mainImg.addEventListener('click', () => {
+        const id = Number(mainImg.dataset.apartmentId || '1');
+        openApartmentModal(id);
+    });
+}
+
 // Функция для показа уведомлений
 function showNotification(message, type = 'info') {
     const notification = document.createElement('div');
@@ -692,6 +769,19 @@ function setupBookingForm() {
     });
 }
 
+function updateCarouselPreview(index) {
+  const preview = document.getElementById('roomsPreviewImage');
+  if (!preview) return;
+
+  const apartmentId = index + 1; // т.к. слайды идут 0..N, а квартиры у нас 1..N
+  const apt = apartments[apartmentId];
+
+  if (!apt || !apt.images || !apt.images.length) return;
+
+  preview.src = apt.images[0];
+  preview.alt = `${apt.title} — превью`;
+}
+
 function initCarousel() {
   const viewport = document.querySelector('.rooms-carousel .carousel-viewport');
   const track    = document.querySelector('.rooms-carousel .carousel-track');
@@ -713,10 +803,20 @@ function initCarousel() {
     track.style.transform = `translateX(${-index * (slideW + GAP)}px)`;
     curEl && (curEl.textContent = String(index + 1));
     slides.forEach((s, i) => s.classList.toggle('active', i === index));
+
+    // ОБНОВЛЯЕМ ФОТО ПОД ТЕКУЩУЮ КВАРТИРУ
+    updateCarouselPreview(index);
   }
 
-  prevBtn?.addEventListener('click', () => { index = (index - 1 + slides.length) % slides.length; update(); });
-  nextBtn?.addEventListener('click', () => { index = (index + 1) % slides.length; update(); });
+  prevBtn?.addEventListener('click', () => {
+    index = (index - 1 + slides.length) % slides.length;
+    update();
+  });
+
+  nextBtn?.addEventListener('click', () => {
+    index = (index + 1) % slides.length;
+    update();
+  });
 
   // свайпы
   let sx = 0, dx = 0;
@@ -728,12 +828,60 @@ function initCarousel() {
   }, { passive:true });
 
   // автолистание
-  let timer = setInterval(() => { index = (index + 1) % slides.length; update(); }, 5000);
+  let timer = setInterval(() => {
+    index = (index + 1) % slides.length;
+    update();
+  }, 5000);
+
   viewport.addEventListener('mouseenter', () => clearInterval(timer));
-  viewport.addEventListener('mouseleave', () => { clearInterval(timer); timer = setInterval(() => { index = (index + 1) % slides.length; update(); }, 5000); });
+  viewport.addEventListener('mouseleave', () => {
+    clearInterval(timer);
+    timer = setInterval(() => {
+      index = (index + 1) % slides.length;
+      update();
+    }, 5000);
+  });
 
   window.addEventListener('resize', update);
-  update();
+  update(); // сразу выставим правильную картинку и позицию
+}
+
+function setupRoomsStrip() {
+    const mainImg = document.getElementById('roomsMainImage');
+    const items = document.querySelectorAll('.rooms-item');
+
+    if (!mainImg || !items.length) return;
+
+    items.forEach((btn) => {
+        btn.addEventListener('click', () => {
+            const id = btn.getAttribute('data-apartment-id');
+            const apt = apartments[id];
+
+            if (!apt || !apt.images || !apt.images.length) return;
+
+            // меняем фото
+            mainImg.src = apt.images[0];
+            mainImg.alt = `${apt.title} — фото`;
+
+            // переключаем активную кнопку
+            items.forEach((b) => b.classList.remove('active'));
+            btn.classList.add('active');
+
+            // по клику на кнопку ещё и открываем модалку (если хочешь)
+            // openApartmentModal(Number(id));
+        });
+    });
+
+    // на старте синхронизируем картинку с первой активной кнопкой
+    const active = document.querySelector('.rooms-item.active');
+    if (active) {
+        const id = active.getAttribute('data-apartment-id');
+        const apt = apartments[id];
+        if (apt && apt.images && apt.images.length) {
+            mainImg.src = apt.images[0];
+            mainImg.alt = `${apt.title} — фото`;
+        }
+    }
 }
 
 // Инициализация при загрузке
@@ -743,7 +891,7 @@ document.addEventListener('DOMContentLoaded', function() {
     enhanceMobileUX();
     setupPhoneMask();
     setupHeaderScroll();
-    initCarousel();
+    setupRoomsSlider();
     
     // Мобильное меню
     const menuToggle = document.getElementById('menuToggle');

@@ -94,48 +94,121 @@
     </div> <!-- ЗАКРОЙТЕ ЭТУ СТРОЧКУ -->
 </section>
 
-     <!-- КАРУСЕЛЬ  -->
+     <!-- КАРУСЕЛЬ КАК НА DOMINO -->
     <section id="rooms" class="rooms">
-    <div class="container">
-        <h2 class="section-title">Наши квартиры</h2>
-    </div>
+        <div class="container">
+            <h2 class="section-title">Наши квартиры</h2>
+            
+            <div class="rooms-carousel">
+                <div class="carousel-viewport">
+                    <div class="carousel-track">
+                        <!-- Квартира 1 -->
+                        <div class="carousel-slide">
+                            <div class="apartment-card" onclick="openApartmentModal(1)">
+                                <div class="card-image">
+                                    <img src="images/apartment-1-1.jpg" alt="Квартира 1" loading="lazy">
+                                    <div class="card-badge">10 фото</div>
+                                </div>
+                                <div class="card-content">
+                                    <h3>Квартира 1</h3>
+                                    <p>Просторная квартира с панорамными окнами</p>
+                                    <div class="card-price">4 000 ₽/ночь</div>
+                                    <button class="card-btn">Подробнее</button>
+                                </div>
+                            </div>
+                        </div>
 
-    <div class="rooms-slider">
-        <div class="rooms-slider-inner">
-            <img
-                id="roomsSliderImage"
-                src="images/apartment-1-1.jpg"
-                alt="Квартира 1 — фото"
-                loading="lazy"
-                data-apartment-id="1"
-            >
-            <div class="rooms-slider-overlay"></div>
+                        <!-- Квартира 2 -->
+                        <div class="carousel-slide">
+                            <div class="apartment-card" onclick="openApartmentModal(2)">
+                                <div class="card-image">
+                                    <img src="images/apartment-2-1.jpg" alt="Квартира 2" loading="lazy">
+                                    <div class="card-badge">12 фото</div>
+                                </div>
+                                <div class="card-content">
+                                    <h3>Квартира 2</h3>
+                                    <p>Двухкомнатная квартира с видом на город</p>
+                                    <div class="card-price">4 000 ₽/ночь</div>
+                                    <button class="card-btn">Подробнее</button>
+                                </div>
+                            </div>
+                        </div>
 
-            <div class="rooms-slider-content">
-                <div class="rooms-slider-price" id="roomsSliderPrice">4 000 ₽</div>
-                <div class="rooms-slider-number" id="roomsSliderNumber">№118</div>
-                <div class="rooms-slider-type" id="roomsSliderType">Однокомнатная квартира</div>
-                <div class="rooms-slider-location" id="roomsSliderLocation">
-                    ЖК «Белый ангел», Береговая 6
+                        <!-- Квартира 3 -->
+                        <div class="carousel-slide">
+                            <div class="apartment-card" onclick="openApartmentModal(3)">
+                                <div class="card-image">
+                                    <img src="images/apartment-3-1.jpg" alt="Квартира 3" loading="lazy">
+                                    <div class="card-badge">13 фото</div>
+                                </div>
+                                <div class="card-content">
+                                    <h3>Квартира 3</h3>
+                                    <p>Студия с современным ремонтом</p>
+                                    <div class="card-price">4 000 ₽/ночь</div>
+                                    <button class="card-btn">Подробнее</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Квартира 4 -->
+                        <div class="carousel-slide">
+                            <div class="apartment-card" onclick="openApartmentModal(4)">
+                                <div class="card-image">
+                                    <img src="images/apartment-4-1.jpg" alt="Квартира 4" loading="lazy">
+                                    <div class="card-badge">14 фото</div>
+                                </div>
+                                <div class="card-content">
+                                    <h3>Квартира 4</h3>
+                                    <p>Просторная трёхкомнатная квартира</p>
+                                    <div class="card-price">4 000 ₽/ночь</div>
+                                    <button class="card-btn">Подробнее</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Квартира 5 -->
+                        <div class="carousel-slide">
+                            <div class="apartment-card" onclick="openApartmentModal(5)">
+                                <div class="card-image">
+                                    <img src="images/apartment-5-1.jpg" alt="Квартира 5" loading="lazy">
+                                    <div class="card-badge">12 фото</div>
+                                </div>
+                                <div class="card-content">
+                                    <h3>Квартира 5</h3>
+                                    <p>Уютная квартира с евроремонтом</p>
+                                    <div class="card-price">4 000 ₽/ночь</div>
+                                    <button class="card-btn">Подробнее</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <button class="rooms-slider-btn" type="button" id="roomsSliderMore">
-                    Узнать больше
-                </button>
-            </div>
 
-            <button class="rooms-slider-arrow rooms-slider-arrow-prev" type="button" aria-label="Предыдущая квартира">‹</button>
-            <button class="rooms-slider-arrow rooms-slider-arrow-next" type="button" aria-label="Следующая квартира">›</button>
-
-            <div class="rooms-slider-dots" id="roomsSliderDots">
-                <button class="rooms-dot active" type="button" data-apartment-id="1" aria-label="Квартира 1"></button>
-                <button class="rooms-dot" type="button" data-apartment-id="2" aria-label="Квартира 2"></button>
-                <button class="rooms-dot" type="button" data-apartment-id="3" aria-label="Квартира 3"></button>
-                <button class="rooms-dot" type="button" data-apartment-id="4" aria-label="Квартира 4"></button>
-                <button class="rooms-dot" type="button" data-apartment-id="5" aria-label="Квартира 5"></button>
+                <!-- Навигация как на Domino -->
+                <div class="carousel-controls">
+                    <button class="carousel-arrow carousel-prev" aria-label="Предыдущая квартира">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                            <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </button>
+                    
+                    <div class="carousel-pagination">
+                        <span class="pagination-info">
+                            <span class="current-slide">1</span>
+                            <span class="pagination-separator">/</span>
+                            <span class="total-slides">5</span>
+                        </span>
+                    </div>
+                    
+                    <button class="carousel-arrow carousel-next" aria-label="Следующая квартира">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                            <path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </button>
+                </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
 
     <!-- СЕКЦИЯ КОНТАКТОВ -->
 <section id="contacts" class="contacts">

@@ -295,433 +295,6 @@ body {
     background: var(--light);
 }
 
-.rooms .container {
-    max-width: 1400px;
-}
-/* сам блок слайдера — без внутренних отступов по бокам */
-.rooms-slider {
-    margin-top: 2rem;
-    padding: 0;              /* было 0 2rem 3rem; — убираем горизонтальный паддинг */
-}
-/* внутренний контейнер — на всю ширину, без card-эффекта */
-.rooms-slider-inner {
-    position: relative;
-    width: 100%;
-    max-width: none;         /* убираем ограничение 1400px */
-    margin: 0;
-    border-radius: 0;        /* если хочешь вообще без скруглений, как у Domino */
-    overflow: hidden;
-    background: #0f172a;
-    box-shadow: none;        /* можно убрать тень, чтобы не казалось карточкой */
-    
-    height: 80vh;            /* делаем реально большой по высоте */
-    min-height: 480px;
-    max-height: 780px;
-}
-
-/* Фото на весь блок */
-.rooms-slider-inner img {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-/* Затемняющая подложка */
-.rooms-slider-overlay {
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(
-        to bottom,
-        rgba(15, 23, 42, 0.4),
-        rgba(15, 23, 42, 0.65)
-    );
-}
-
-/* Контент по центру */
-.rooms-slider-content {
-    position: absolute;
-    inset: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    color: #fff;
-    padding: 0 1.5rem 2.5rem;
-    z-index: 2;
-}
-
-.rooms-slider-price {
-    font-size: 2.4rem;
-    font-weight: 800;
-    margin-bottom: 0.5rem;
-}
-
-.rooms-slider-number {
-    font-size: 1.1rem;
-    font-weight: 600;
-    margin-bottom: 1rem;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-}
-
-.rooms-slider-type {
-    font-size: 1.2rem;
-    font-weight: 600;
-    margin-bottom: 0.4rem;
-}
-
-.rooms-slider-location {
-    font-size: 1rem;
-    opacity: 0.9;
-    margin-bottom: 1.4rem;
-}
-
-/* Кнопка "Узнать больше" */
-.rooms-slider-btn {
-    background: #ffffff;
-    color: #111827;
-    border: none;
-    border-radius: 999px;
-    padding: 0.9rem 2.4rem;
-    font-size: 0.95rem;
-    font-weight: 600;
-    cursor: pointer;
-    box-shadow: 0 14px 40px rgba(15, 23, 42, 0.6);
-    transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
-}
-
-.rooms-slider-btn:hover {
-    transform: translateY(-1px);
-    box-shadow: 0 18px 50px rgba(15, 23, 42, 0.8);
-    background: #f9fafb;
-}
-
-/* Стрелки */
-.rooms-slider-arrow {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 44px;
-    height: 44px;
-    border-radius: 999px;
-    border: none;
-    background: rgba(15, 23, 42, 0.75);
-    color: #fff;
-    font-size: 1.6rem;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45);
-    transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
-    z-index: 3;
-}
-
-.rooms-slider-arrow-prev { left: 24px; }
-.rooms-slider-arrow-next { right: 24px; }
-
-.rooms-slider-arrow:hover {
-    background: rgba(15, 23, 42, 0.95);
-    transform: translateY(-50%) scale(1.05);
-}
-
-/* Точки */
-.rooms-slider-dots {
-    position: absolute;
-    left: 50%;
-    bottom: 18px;
-    transform: translateX(-50%);
-    display: flex;
-    gap: 0.6rem;
-    z-index: 3;
-}
-
-.rooms-dot {
-    width: 9px;
-    height: 9px;
-    border-radius: 999px;
-    border: none;
-    background: #cbd5e1;
-    cursor: pointer;
-    padding: 0;
-    transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-.rooms-dot:hover {
-    transform: scale(1.25);
-    box-shadow: 0 0 0 4px rgba(148, 163, 184, 0.3);
-}
-
-.rooms-dot.active {
-    background: var(--accent);
-    transform: scale(1.7);
-    box-shadow: 0 0 0 4px rgba(245, 158, 11, 0.35);
-}
-
-/* Адаптив */
-@media (max-width: 768px) {
-    .rooms-slider {
-        padding: 0 1rem 2.5rem;
-    }
-
-    .rooms-slider-inner {
-        height: clamp(360px, 70vh, 560px);
-    }
-
-    .rooms-slider-price {
-        font-size: 1.9rem;
-    }
-
-    .rooms-slider-number {
-        font-size: 0.95rem;
-    }
-
-    .rooms-slider-type {
-        font-size: 1.05rem;
-    }
-
-    .rooms-slider-location {
-        font-size: 0.9rem;
-    }
-
-    .rooms-slider-arrow-prev { left: 12px; }
-    .rooms-slider-arrow-next { right: 12px; }
-}
-
-/* Блок "фото + список квартир", как у Domino по смыслу */
-.rooms-photo-block {
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-}
-
-/* Большое фото квартиры */
-.rooms-main-photo {
-    position: relative;
-    border-radius: 18px;
-    overflow: hidden;
-    background: #0f172a;
-    box-shadow: 0 24px 50px rgba(15, 23, 42, 0.5);
-
-    /* соотношение сторон ~16:9 */
-    padding-top: 56%;
-}
-
-.rooms-main-photo img {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-}
-
-/* Горизонтальная полоса квартир (как "точки") */
-.rooms-strip {
-    display: flex;
-    gap: 0.75rem;
-    overflow-x: auto;
-    padding-bottom: 0.5rem;
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: thin;
-}
-
-.rooms-strip::-webkit-scrollbar {
-    height: 6px;
-}
-
-.rooms-strip::-webkit-scrollbar-thumb {
-    background: #cbd5e1;
-    border-radius: 999px;
-}
-
-/* Кнопка-квартира */
-.rooms-item {
-    flex: 0 0 auto;
-    min-width: 220px;
-    max-width: 260px;
-    border-radius: 14px;
-    border: 1px solid #e5e7eb;
-    background: #ffffff;
-    padding: 0.9rem 1rem;
-    display: flex;
-    flex-direction: column;
-    gap: 0.15rem;
-    text-align: left;
-    cursor: pointer;
-    transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease, background 0.2s ease;
-}
-
-.rooms-item:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 10px 25px rgba(15, 23, 42, 0.15);
-}
-
-/* Активная квартира */
-.rooms-item.active {
-    border-color: var(--accent);
-    box-shadow: 0 12px 30px rgba(245, 158, 11, 0.35);
-    background: #fffbeb;
-}
-
-/* Тексты внутри кнопки */
-.rooms-item-price {
-    font-size: 1.05rem;
-    font-weight: 800;
-    color: var(--accent);
-}
-
-.rooms-item-number {
-    font-size: 0.9rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    color: var(--dark);
-}
-
-.rooms-item-type {
-    font-size: 0.9rem;
-    font-weight: 500;
-    color: var(--dark);
-}
-
-.rooms-item-location {
-    font-size: 0.8rem;
-    color: var(--secondary);
-}
-
-/* Блок: большое фото + точки, как у DoMino */
-.rooms-gallery {
-    margin-top: 2rem;
-    display: flex;
-    flex-direction: column;
-    gap: 1.2rem;
-}
-
-/* Большое фото квартиры — весь блок */
-.rooms-gallery-main {
-    position: relative;
-    border-radius: 18px;
-    overflow: hidden;
-    background: #0f172a;
-    box-shadow: 0 24px 50px rgba(15, 23, 42, 0.5);
-
-    /* делаем кинематографичное соотношение сторон, как у баннера */
-    aspect-ratio: 16 / 9;
-    max-height: 560px;
-}
-
-.rooms-gallery-main img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-    cursor: pointer; /* клик — открыть модалку */
-}
-
-/* Точки карусели */
-.rooms-gallery-dots {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 0.7rem;
-}
-
-/* Одна точка */
-.rooms-dot {
-    width: 12px;
-    height: 12px;
-    border-radius: 999px;
-    border: none;
-    background: #cbd5e1;
-    cursor: pointer;
-    padding: 0;
-    transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-.rooms-dot:hover {
-    transform: scale(1.2);
-    box-shadow: 0 0 0 4px rgba(148, 163, 184, 0.3);
-}
-
-/* Активная точка */
-.rooms-dot.active {
-    background: var(--accent);
-    transform: scale(1.5);
-    box-shadow: 0 0 0 4px rgba(245, 158, 11, 0.3);
-}
-
-/* Фокус для клавиатуры */
-.rooms-dot:focus-visible {
-    outline: 2px solid var(--primary);
-    outline-offset: 2px;
-}
-
-/* Адаптив */
-@media (max-width: 768px) {
-    .rooms-gallery-main {
-        aspect-ratio: 4 / 3;
-        max-height: none;
-    }
-}
-
-/* Адаптив */
-@media (max-width: 768px) {
-    .rooms-main-photo {
-        padding-top: 65%;
-    }
-
-    .rooms-item {
-        min-width: 200px;
-    }
-}
-
-.rooms-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 1rem;
-    margin-bottom: 2rem;
-}
-
-.rooms-layout {
-    display: grid;
-    grid-template-columns: minmax(0, 2fr) minmax(0, 1fr); /* фото шире, карусель уже */
-    gap: 2.5rem;
-    align-items: stretch;
-}
-
-/* Большое фото слева — как отдельный крупный блок */
-.rooms-photo {
-    position: relative;
-    border-radius: 18px;
-    overflow: hidden;
-    background: #0f172a;
-    box-shadow: 0 24px 50px rgba(15, 23, 42, 0.5);
-
-    /* магия размера: высота ≈ 56% от ширины (почти 16:9) */
-    padding-top: 56%;
-}
-
-/* Внутренний контейнер растягиваем на весь блок */
-.rooms-photo-inner {
-    position: absolute;
-    inset: 0;        /* top:0; right:0; bottom:0; left:0; */
-    width: 100%;
-    height: 100%;
-}
-
-/* Картинка заполняет весь блок, без “письма в конверте” */
-#roomsPreviewImage {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-}
-
 .apartments-carousel {
     position: relative;
     margin: 2rem 0;
@@ -754,141 +327,104 @@ body {
 }
 
 /* Карточки квартир */
-/* Карточки квартир (НОВЫЙ ВИД без фото, как Domino) */
-/* Карточки квартир (текстовые, как у Domino) */
-.rooms-carousel .carousel-viewport {
-    overflow: hidden;
-}
-
-.rooms-carousel .carousel-track {
-    will-change: transform;
-    display: flex;
-    gap: 16px;
-    transition: transform 0.35s ease;
-}
-
-.rooms-carousel .carousel-slide {
-    flex: 0 0 auto;
-    width: 280px;
-    scroll-snap-align: start;
-    transition: transform 0.3s ease;
-}
-
-.rooms-carousel .carousel-slide.active {
-    transform: translateY(-4px);
-}
-
 .apartment-card {
-    background: #ffffff;
+    background: var(--white);
+    border: 1px solid #e2e8f0;
     border-radius: 16px;
-    border: 1px solid #e5e7eb;
-    box-shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
-    padding: 1.4rem 1.5rem 1.2rem;
+    box-shadow: 0 4px 20px rgba(30, 41, 59, 0.08);
+    transition: all 0.4s ease;
+    cursor: pointer;
+    overflow: hidden;
+    height: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    min-height: 180px;
-    cursor: pointer;
-    transition: box-shadow 0.25s ease, transform 0.25s ease, border-color 0.25s ease;
 }
 
 .apartment-card:hover {
-    transform: translateY(-6px);
-    box-shadow: 0 18px 40px rgba(15, 23, 42, 0.16);
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(30, 41, 59, 0.15);
     border-color: var(--accent);
 }
 
-.apartment-info {
-    display: grid;
-    row-gap: 0.25rem;
-    margin-bottom: 0.9rem;
-}
-
-.apartment-price {
-    font-size: 1.3rem;
-    font-weight: 800;
-    color: var(--accent);
-    margin-bottom: 0.3rem;
-}
-
-.apartment-number {
-    font-size: 0.9rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    color: var(--dark);
-}
-
-.apartment-type {
-    font-size: 0.95rem;
-    font-weight: 500;
-    color: var(--dark);
-}
-
-.apartment-location {
-    font-size: 0.85rem;
-    color: var(--secondary);
-}
-
-/* Кнопка "Узнать больше" */
-.card-btn {
-    margin-top: 0.2rem;
-    align-self: flex-start;
-    background: var(--primary);
-    color: #fff;
-    border: none;
-    border-radius: 999px;
-    padding: 0.55rem 1.4rem;
-    font-size: 0.85rem;
-    font-weight: 600;
-    cursor: pointer;
-    text-transform: none;
-    letter-spacing: 0.03em;
-    transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-.card-btn:hover {
-    background: #1d4ed8;
-    transform: translateY(-1px);
-    box-shadow: 0 8px 18px rgba(37, 99, 235, 0.35);
-}
-
-@media (max-width: 900px) {
-    .rooms-layout {
-        grid-template-columns: 1fr;
-        gap: 1.5rem;
-    }
-
-    .rooms-photo {
-        padding-top: 65%; /* на мобильных чуть более вытянутое фото */
-    }
-
-    .rooms-carousel .carousel-slide {
-        width: 260px;
-    }
-}
-
-.slider {
-    width: 100%;
-    height: 80vh; /* как у Domino */
+.card-image {
     position: relative;
+    height: 280px;
     overflow: hidden;
+    background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
 }
 
-.slide img {
+.card-image img {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    transition: transform 0.4s ease;
 }
 
-.slide-content {
+.apartment-card:hover .card-image img {
+    transform: scale(1.08);
+}
+
+.card-badge {
     position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    text-align: center;
+    top: 1rem;
+    right: 1rem;
+    background: rgba(0,0,0,0.8);
     color: white;
-    z-index: 10;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    backdrop-filter: blur(10px);
+}
+
+.card-content {
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.card-content h3 {
+    color: var(--dark);
+    margin-bottom: 0.8rem;
+    font-size: 1.4rem;
+    font-weight: 700;
+}
+
+.card-content p {
+    color: var(--secondary);
+    margin-bottom: 1.5rem;
+    line-height: 1.6;
+    flex-grow: 1;
+    font-size: 1rem;
+}
+
+.card-price {
+    font-size: 1.6rem;
+    font-weight: 800;
+    color: var(--accent);
+    margin-bottom: 1.5rem;
+}
+
+.card-btn {
+    width: 100%;
+    background: var(--accent);
+    color: white;
+    border: none;
+    padding: 1rem 2rem;
+    border-radius: 10px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.card-btn:hover {
+    background: #e55a00;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(245, 158, 11, 0.4);
 }
 
 /* Навигация карусели */
