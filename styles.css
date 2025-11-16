@@ -219,7 +219,7 @@ body {
 .section-title {
     text-align: center;
     font-size: 2.5rem;
-    margin-bottom: 3rem;
+    margin-bottom: 1.5rem;
     color: var(--dark);
     font-weight: 700;
 }
@@ -291,32 +291,37 @@ body {
 
 /* ===== ОБНОВЛЕННАЯ КАРУСЕЛЬ КВАРТИР ===== */
 .rooms {
-    padding: 4rem 0;
-    background: var(--light);
+    margin-top: 0 !important;
+    padding-top: 0 !important;
 }
 
 .rooms .container {
     max-width: 1400px;
 }
+
 /* сам блок слайдера — без внутренних отступов по бокам */
 .rooms-slider {
-    margin-top: 2rem;
-    padding: 0;              /* было 0 2rem 3rem; — убираем горизонтальный паддинг */
+    padding-top: 0 !important;
+    margin-top: 0 !important;
 }
+
 /* внутренний контейнер — на всю ширину, без card-эффекта */
 .rooms-slider-inner {
     position: relative;
     width: 100%;
-    max-width: none;         /* убираем ограничение 1400px */
+    max-width: none;
     margin: 0;
-    border-radius: 0;        /* если хочешь вообще без скруглений, как у Domino */
+    margin-top: 0 !important;
+    border-radius: 0;
     overflow: hidden;
     background: #0f172a;
-    box-shadow: none;        /* можно убрать тень, чтобы не казалось карточкой */
-    
-    height: 80vh;            /* делаем реально большой по высоте */
-    min-height: 480px;
-    max-height: 780px;
+    box-shadow: none;
+
+    /* высота: полный экран минус шапка */
+    height: 100vh !important; /* на всю высоту экрана */
+    max-height: 100vh !important;
+    margin-top: 0 !important;
+    border-radius: 0 !important; /* домино тоже без скруглений */
 }
 
 /* Фото на весь блок */
@@ -325,7 +330,8 @@ body {
     inset: 0;
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: cover !important;   /* растягиваем по всему блоку */
+    background: none;    /* фон не нужен, всё закрывает фото */
 }
 
 /* Затемняющая подложка */
@@ -351,6 +357,7 @@ body {
     color: #fff;
     padding: 0 1.5rem 2.5rem;
     z-index: 2;
+    padding-bottom: 4rem !important;
 }
 
 .rooms-slider-price {
@@ -432,7 +439,7 @@ body {
 .rooms-slider-dots {
     position: absolute;
     left: 50%;
-    bottom: 18px;
+    bottom: 40px !important;
     transform: translateX(-50%);
     display: flex;
     gap: 0.6rem;
@@ -468,7 +475,9 @@ body {
     }
 
     .rooms-slider-inner {
-        height: clamp(360px, 70vh, 560px);
+        height: 100vh; /* простое, предсказуемое поведение */
+        min-height: 360px;
+        max-height: none;
     }
 
     .rooms-slider-price {
