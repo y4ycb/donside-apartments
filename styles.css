@@ -47,7 +47,7 @@ body {
 .header-container {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 2rem;
+    padding: 20px 0;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -136,6 +136,9 @@ body {
 .book-btn {
     background: var(--white);
     color: var(--dark);
+    margin-top: 4px;
+    margin-bottom: 4px;
+    
 }
 
 .book-btn:hover, .cta-button:hover {
@@ -1357,10 +1360,68 @@ body {
     box-shadow: none;
 }
 
+/* по умолчанию показываем текст, прячем "Отправляем..." */
+.submit-btn .btn-loading {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+/* во время отправки */
+.submit-btn.loading .btn-text {
+    display: none;
+}
+
+submit-btn.loading .btn-loading {
+    display: inline-flex;
+}
+
+/* успех */
+.submit-btn.success {
+    background: #10b981;
+}
+
+.submit-btn.success:hover {
+    background: #059669;
+}
+
+/* ошибка */
+.submit-btn.error {
+    background: #ef4444;
+}
+
+.submit-btn.error:hover {
+    background: #dc2626;
+}
+
+/* простой спиннер */
+.loading-spinner {
+    width: 16px;
+    height: 16px;
+    border-radius: 999px;
+    border: 2px solid rgba(255,255,255,0.4);
+    border-top-color: #fff;
+    animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
 .form-note {
     font-size: 0.75rem;
     color: var(--secondary);
     margin-top: 0.75rem;
+}
+
+.form-section-title {
+    margin: 1.5rem 0 0.75rem;
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #94a3b8; /* мягкий серо-синий */
 }
 
 /* ===== UTILITY CLASSES ===== */
@@ -1613,3 +1674,418 @@ body {
 
 .rooms-carousel .carousel-viewport { overflow: hidden; }
 .rooms-carousel .carousel-track { will-change: transform; display: flex; gap: 16px; transition: transform .35s ease; }
+
+
+/* Страница со всеми квартирами */
+.apartments-page {
+     padding-top: 0;      /* или вообще убери эту строку */
+    background: #f8fafc;
+}
+
+.apartments-hero {
+    text-align: center;
+    padding: 32px 0 40px;
+}
+
+.apartments-hero h1 {
+    font-size: 2.4rem;
+    margin-bottom: 0.75rem;
+    color: var(--dark);
+}
+
+.apartments-hero p {
+    max-width: 700px;
+    color: var(--secondary);
+    font-size: 1rem;
+}
+
+/* Список квартир */
+.apartments-list {
+    padding: 1rem 0 4rem;
+}
+
+.apartment-card {
+    display: grid;
+    grid-template-columns: minmax(0, 1.4fr) minmax(0, 1.6fr);
+    gap: 2.5rem;
+    padding: 2rem;
+    margin-bottom: 2rem;
+    border-radius: 20px;
+    background: #ffffff;
+    box-shadow: 0 18px 40px rgba(15, 23, 42, 0.08);
+    border: 1px solid #e5e7eb;
+}
+
+.apartment-card:last-child {
+    margin-bottom: 0;
+}
+
+/* Фото блока */
+.apartment-photos {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.apartment-main-photo {
+    border: none;
+    padding: 0;
+    border-radius: 16px;
+    overflow: hidden;
+    cursor: pointer;
+    background: #0f172a;
+}
+
+.apartment-main-photo img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+    aspect-ratio: 4 / 3;
+    transition: transform 0.3s ease;
+}
+
+.apartment-main-photo:hover img {
+    transform: scale(1.03);
+}
+
+.apartment-thumbs {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.apartment-thumbs button {
+    border: none;
+    padding: 0;
+    border-radius: 10px;
+    overflow: hidden;
+    cursor: pointer;
+    background: #0f172a;
+    flex: 0 0 70px;
+    height: 50px;
+}
+
+.apartment-thumbs img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* Контент справа */
+.apartment-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.apartment-header {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 1rem;
+    align-items: center;
+}
+
+.apartment-number {
+    font-weight: 700;
+    font-size: 0.95rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--secondary);
+}
+
+.apartment-type {
+    font-weight: 600;
+    font-size: 1rem;
+    color: var(--dark);
+}
+
+.apartment-price-row {
+    display: flex;
+    align-items: baseline;
+    gap: 0.75rem;
+}
+
+.apartment-price {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--accent);
+}
+
+.apartment-label {
+    font-size: 0.9rem;
+    color: var(--secondary);
+}
+
+.apartment-location {
+    font-size: 0.95rem;
+    color: var(--secondary);
+}
+
+.apartment-description {
+    font-size: 0.95rem;
+    color: var(--dark);
+    line-height: 1.7;
+}
+
+.apartment-features {
+    list-style: none;
+    padding: 0;
+    margin: 0.5rem 0 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.4rem 1.5rem;
+    font-size: 0.9rem;
+    color: var(--secondary);
+}
+
+.apartment-features li::before {
+    content: "•";
+    margin-right: 0.35rem;
+    color: var(--accent);
+}
+
+/* Кнопки внизу */
+.apartment-actions {
+    margin-top: 1rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+}
+
+.apartment-book-btn {
+    background: var(--accent);
+    color: #fff;
+    border: none;
+    border-radius: 999px;
+    padding: 0.8rem 1.8rem;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 12px 30px rgba(245, 158, 11, 0.35);
+    transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+
+.apartment-book-btn:hover {
+    background: #e55a00;
+    transform: translateY(-2px);
+    box-shadow: 0 18px 40px rgba(245, 158, 11, 0.45);
+}
+
+.apartment-more-btn {
+    background: #e2e8f0;
+    color: #0f172a;
+    border: none;
+    border-radius: 999px;
+    padding: 0.8rem 1.6rem;
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.apartment-more-btn:hover {
+    background: #cbd5e1;
+    transform: translateY(-1px);
+}
+
+/* Адаптив */
+@media (max-width: 900px) {
+    .apartment-card {
+        grid-template-columns: 1fr;
+        padding: 1.5rem;
+        gap: 1.5rem;
+    }
+
+    .apartment-features {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 600px) {
+    .apartments-page {
+        padding-top: 5rem;
+    }
+
+    .apartments-hero {
+        padding: 2.5rem 0 0.5rem;
+    }
+
+    .apartments-hero h1 {
+        font-size: 2rem;
+    }
+
+    .apartment-card {
+        padding: 1.25rem;
+        border-radius: 16px;
+    }
+
+    .apartment-main-photo img {
+        aspect-ratio: 4 / 3;
+    }
+}
+
+/* Тёмная обычная шапка для внутренних страниц */
+.header.header--inner {
+    position: relative;
+    background: rgba(30, 41, 59, 0.95);
+    backdrop-filter: blur(12px);
+
+    padding: 10px 0;       /* ← было около 28–30px */
+    min-height: 60px;      /* ← ограничиваем высоту */
+    display: flex;
+    align-items: center;
+}
+
+.apartments-hero {
+    text-align: center;
+    padding: 35px 0 40px;  /* ← было 50px */
+}
+
+@media (max-width: 768px) {
+    .apartments-hero {
+        padding: 40px 0 30px; /* чуть меньше на мобильных */
+    }
+}
+
+.apartments-hero h1 {
+    font-size: 2rem;
+    margin-bottom: 10px;
+}
+
+.apartments-hero p {
+    max-width: 640px; /* чтобы текст не растягивался слишком широко */
+    margin: 0 auto;   /* центрирование */
+    color: #64748b;
+    font-size: 1rem;
+    line-height: 1.6;
+}
+
+.header.header--inner .logo {
+    transform: scale(0.88);
+}
+
+
+.header.header--inner .nav-list a {
+    font-size: 0.95rem;
+}
+
+.header.header--inner .book-btn {
+    padding: 8px 14px;
+    font-size: 0.9rem;
+}
+
+.header .book-btn {
+    margin-left: 50px;
+}
+
+.header-container {
+    padding-left: 40px;
+    padding-right: 40px;
+}
+
+.header .logo {
+    margin-right: 40px;
+}
+
+/* ===== Адаптив страницы с квартирами (только мобилки) ===== */
+
+@media (max-width: 900px) {
+  /* Карточка становится колонкой: фото сверху, текст снизу */
+  .apartments-list .apartment-card {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1.25rem 1rem;
+    margin-bottom: 1.5rem;
+    border-radius: 14px;
+  }
+
+  .apartments-list .apartment-photos {
+    width: 100%;
+    max-width: none;
+  }
+
+  .apartments-list .apartment-main-photo img {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+  }
+
+  /* Миниатюры — горизонтальный скролл свайпом */
+  .apartments-list .apartment-thumbs {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 0.6rem;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    padding-bottom: 0.3rem;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+
+  .apartments-list .apartment-thumbs::-webkit-scrollbar {
+    display: none;
+  }
+
+  .apartments-list .apartment-thumbs img {
+    width: 68px;
+    height: 50px;
+    object-fit: cover;
+  }
+
+  /* Текстовая часть чуть компактнее */
+  .apartments-list .apartment-info {
+    gap: 0.6rem;
+  }
+
+  .apartments-list .apartment-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.25rem;
+  }
+
+  .apartments-list .apartment-type {
+    font-size: 1rem;
+  }
+
+  .apartments-list .apartment-price-row {
+    gap: 0.5rem;
+  }
+
+  .apartments-list .apartment-price {
+    font-size: 1.15rem;
+  }
+
+  .apartments-list .apartment-label {
+    font-size: 0.85rem;
+  }
+
+  .apartments-list .apartment-location,
+  .apartments-list .apartment-description,
+  .apartments-list .apartment-features {
+    font-size: 0.9rem;
+  }
+
+  /* Кнопки во всю ширину — удобно нажимать пальцем */
+  .apartments-list .apartment-actions {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.6rem;
+    margin-top: 0.5rem;
+  }
+
+  .apartments-list .apartment-book-btn,
+  .apartments-list .apartment-more-btn {
+    width: 100%;
+    justify-content: center;
+    text-align: center;
+  }
+}
+
+.nav-list a.nav-active {
+    background: rgba(255, 255, 255, 0.12);
+    border-radius: 6px;
+}
+

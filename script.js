@@ -7,7 +7,17 @@ const apartments = [
     number: "№118",
     type: "Однокомнатная квартира",
     location: "ЖК «Белый ангел», Береговая 6",
-    images: ["images/1.1.jpg"]
+    images: ["images/1.1.jpg",
+        "images/1.2.jpg",
+        "images/1.3.jpg",
+        "images/1.4.jpg",
+        "images/1.5.jpg",
+        "images/1.6.jpg",
+        "images/1.7.jpg",
+        "images/1.8.jpg",
+        "images/1.9.jpg",
+        "images/1.10.jpg",
+    ]
   },
   {
     id: 2,
@@ -16,7 +26,17 @@ const apartments = [
     number: "№204",
     type: "Однокомнатная квартира",
     location: "ЖК «Белый ангел», Береговая 6",
-    images: ["images/2.1.jpg"]
+    images: ["images/2.1.jpg",
+        "images/2.2.jpg",
+        "images/2.3.jpg",
+        "images/2.4.jpg",
+        "images/2.5.jpg",
+        "images/2.6.jpg",
+        "images/2.7.jpg",
+        "images/2.8.jpg",
+        "images/2.9.jpg",
+        "images/2.10.jpg",
+    ]
   },
   {
     id: 3,
@@ -25,7 +45,19 @@ const apartments = [
     number: "№315",
     type: "Однокомнатная квартира",
     location: "ЖК «Белый ангел», Береговая 6",
-    images: ["images/3.1.jpg"]
+    images: ["images/3.1.jpg",
+        "images/3.2.jpg",
+        "images/3.3.jpg",
+        "images/3.8.jpg",
+        "images/3.9.jpg",
+        "images/3.5.jpg",
+        "images/3.6.jpg",
+        "images/3.7.jpg",
+        "images/3.10.jpg",
+        "images/3.11.jpg",
+        "images/3.12.jpg",
+        
+    ]
   },
   {
     id: 4,
@@ -34,7 +66,21 @@ const apartments = [
     number: "№402",
     type: "Двухкомнатная квартира",
     location: "ЖК «Белый ангел», Береговая 6",
-    images: ["images/4.1.jpg"]
+    images: ["images/4.1.jpg",
+        "images/4.2.jpg",
+        "images/4.3.jpg",
+        "images/4.4.jpg",
+        "images/4.5.jpg",
+        "images/4.6.jpg",
+        "images/4.7.jpg",
+        "images/4.8.jpg",
+        "images/4.9.jpg",
+        "images/4.11.jpg",
+        "images/4.12.jpg",
+        "images/4.13.jpg",
+        "images/4.14.jpg",
+
+    ]
   },
   {
     id: 5,
@@ -43,7 +89,17 @@ const apartments = [
     number: "№510",
     type: "Студия",
     location: "ЖК «Белый ангел», Береговая 6",
-    images: ["images/5.1.jpg"]
+    images: ["images/5.1.jpg",
+        "images/5.2.jpg",
+        "images/5.3.jpg",
+        "images/5.4.jpg",
+        "images/5.5.jpg",
+        "images/5.6.jpg",
+        "images/5.7.jpg",
+        "images/5.8.jpg",
+        "images/5.9.jpg",
+        "images/5.10.jpg",
+    ]
   },
   {
     id: 6,
@@ -52,7 +108,18 @@ const apartments = [
     number: "№612",
     type: "Однокомнатная квартира",
     location: "ЖК «Белый ангел», Береговая 6",
-    images: ["images/6.1.jpg"]
+    images: ["images/6.1.jpg",
+        "images/6.2.jpg",
+        "images/6.3.jpg",
+        "images/6.4.jpg",
+        "images/6.5.jpg",
+        "images/6.6.jpg",
+        "images/6.7.jpg",
+        "images/6.8.jpg",
+        "images/6.9.jpg",
+        "images/6.10.jpg",
+        "images/6.12.jpg",
+    ]
   },
   {
     id: 7,
@@ -61,7 +128,16 @@ const apartments = [
     number: "№701",
     type: "Студия",
     location: "ЖК «Белый ангел», Береговая 6",
-    images: ["images/7.1.jpg"]
+    images: ["images/7.1.jpg",
+        "images/7.2.jpg",
+        "images/7.4.jpg",
+        "images/7.5.jpg",
+        "images/7.6.jpg",
+        "images/7.7.jpg",
+        "images/7.8.jpg",
+        "images/7.9.jpg",
+        "images/7.10.jpg",
+    ]
   },
   {
     id: 8,
@@ -70,7 +146,17 @@ const apartments = [
     number: "№820",
     type: "Двухкомнатная квартира",
     location: "ЖК «Белый ангел», Береговая 6",
-    images: ["images/8.1.jpg"]
+    images: ["images/8.1.jpg",
+        "images/8.2.jpg",
+        "images/8.3.jpg",
+        "images/8.4.jpg",
+        "images/8.5.jpg",
+        "images/8.6.jpg",
+        "images/8.7.jpg",
+        "images/8.8.jpg",
+        "images/8.9.jpg",
+        "images/8.10.jpg",
+    ]
   },
   {
     id: 9,
@@ -79,7 +165,17 @@ const apartments = [
     number: "№903",
     type: "Однокомнатная квартира",
     location: "ЖК «Белый ангел», Береговая 6",
-    images: ["images/9.1.jpg"]
+    images: ["images/9.1.jpg",
+        "images/9.2.jpg",
+        "images/9.3.jpg",
+        "images/9.4.jpg",
+        "images/9.5.jpg",
+        "images/9.6.jpg",
+        "images/9.7.jpg",
+        "images/9.8.jpg",
+        "images/9.9.jpg",
+        "images/9.10.jpg",
+    ]
   },
   {
     id: 10,
@@ -88,30 +184,40 @@ const apartments = [
     number: "№1001",
     type: "Двухкомнатная квартира",
     location: "ЖК «Белый ангел», Береговая 6",
-    images: ["images/10.1.jpg"]
+    images: ["images/10.1.jpg",
+        "images/10.2.jpg",
+        "images/10.3.jpg",
+        "images/10.4.jpg",
+        "images/10.5.jpg",
+        "images/10.6.jpg",
+        "images/10.7.jpg",
+        "images/10.8.jpg",
+        "images/10.9.jpg",
+        "images/10.10.jpg",
+    ]
   }
 ];
 
 // ====== ХЕДЕР ПРИ СКРОЛЛЕ ======
 function setupHeaderScroll() {
   const header = document.querySelector(".header");
-  const hero = document.querySelector(".hero");
+const hero = document.querySelector(".hero");
 
-  if (!header || !hero) return;
+if (!header) return;
 
-  function updateHeader() {
-    const scrollY = window.scrollY;
+// Отключаем поведение на внутренних страницах
+if (header.classList.contains("header--inner")) return;
+
+if (!hero) return;
+
+window.addEventListener("scroll", () => {
     const heroHeight = hero.offsetHeight;
-
-    if (scrollY > heroHeight - 100) {
-      header.classList.add("scrolled");
+    if (window.scrollY > heroHeight - 80) {
+        header.classList.add("scrolled");
     } else {
-      header.classList.remove("scrolled");
+        header.classList.remove("scrolled");
     }
-  }
-
-  window.addEventListener("scroll", updateHeader);
-  updateHeader();
+});
 }
 
 // ====== МАСКА ТЕЛЕФОНА ======
@@ -320,7 +426,7 @@ function preloadImages(imageUrls) {
   });
 }
 
-function openApartmentModal(apartmentId) {
+function openApartmentModal(apartmentId, imageIndex = 0) {
   const idNum = Number(apartmentId);
   const apt = apartments.find((a) => a.id === idNum);
 
@@ -331,7 +437,16 @@ function openApartmentModal(apartmentId) {
   }
 
   currentApartment = apt;
-  currentImageIndex = 0;
+
+  // без картинок — просто 0
+  if (!Array.isArray(apt.images) || apt.images.length === 0) {
+    currentImageIndex = 0;
+  } else {
+    // clamping: не даём выйти за пределы массива
+    const maxIndex = apt.images.length - 1;
+    const safeIndex = Math.min(Math.max(0, imageIndex), maxIndex);
+    currentImageIndex = safeIndex;
+  }
 
   modal.setAttribute("role", "dialog");
   modal.setAttribute("aria-modal", "true");
@@ -825,13 +940,14 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   // Кнопки бронирования (шапка + hero)
-  const bookButtons = document.querySelectorAll(".book-btn, .cta-button");
-  bookButtons.forEach((btn) => {
-    btn.addEventListener("click", function (e) {
-      e.preventDefault();
-      openBookingModal();
-    });
+  // Кнопки бронирования (только шапка)
+const bookButtons = document.querySelectorAll(".book-btn");
+bookButtons.forEach((btn) => {
+  btn.addEventListener("click", function (e) {
+    e.preventDefault();
+    openBookingModal();
   });
+});
 
   // Кнопки "Узнать больше" в карточках (если появятся)
   const detailButtons = document.querySelectorAll(".card-btn");

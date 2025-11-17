@@ -1,0 +1,865 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DonSide - Квартиры</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <meta name="description" content="DonSide — апартаменты на набережной Дона. Бесконтактное заселение 24/7. Посуточная аренда в Ростове-на-Дону." />
+    <meta property="og:title" content="DonSide — аренда квартир посуточно в Ростове-на-Дону" />
+    <meta property="og:description" content="Бесконтактное заселение 24/7. Лучшие локации на набережной Дона." />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="https://donside.ru/og-cover.jpg" />
+    <link rel="icon" type="image/x-icon" href="/images/donside_favicon_clean.ico">
+</head>
+<body>
+   <header class="header header--inner" role="banner">
+        <div class="header-container">
+            <!-- Логотип всегда возвращает на главную -->
+        <a href="index.html" class="logo" aria-label="DonSide - главная страница">
+                <span class="logo-symbol">D</span>
+                <span class="logo-text">onSide</span>
+            </a>
+            
+            <nav class="nav" role="navigation" aria-label="Основное меню">
+            <ul class="nav-list">
+                <!-- прыжок на блок "О нас" на главной -->
+                <li><a href="index.html#about" aria-label="О нашей компании">О нас</a></li>
+                <!-- мы уже на странице квартир, можно подсветить этот пункт -->
+                <li><a href="apartments.html" class="nav-active" aria-label="Все квартиры">Квартиры</a></li>
+                <!-- прыжок на контакты на главной -->
+                <li><a href="index.html#contacts" aria-label="Контактная информация">Контакты</a></li>
+            </ul>
+            <button class="menu-toggle" id="menuToggle" aria-label="Открыть меню" aria-expanded="false">☰</button>
+        </nav>
+            
+            <button class="book-btn" aria-label="Забронировать квартиру">Забронировать</button>
+        </div>
+    </header> <!-- ШАПКА — можешь скопировать из index.html без изменений -->
+
+    <main class="apartments-page">
+        <section class="apartments-hero">
+            <div class="container">
+                <h1>Все апартаменты DonSide</h1>
+                <p>
+                    Выберите подходящую квартиру в ЖК «Белый ангел» на набережной Дона.
+                    Все апартаменты с качественным ремонтом, Wi-Fi, кухней и бесконтактным заселением 24/7.
+                </p>
+            </div>
+        </section>
+
+        <section class="apartments-list">
+    <div class="container">
+
+        <!-- КВАРТИРА 1 -->
+        <article class="apartment-card" id="apartment-1">
+            <div class="apartment-photos">
+                <button class="apartment-main-photo" type="button" onclick="openApartmentModal(1, 0)">
+                    <img src="images/1.1.jpg"
+                         alt="Квартира №118 в ЖК «Белый ангел»" loading="lazy">
+                </button>
+                <div class="apartment-thumbs">
+                    <button type="button" onclick="openApartmentModal(1, 1)">
+                        <img src="images/1.2.jpg" alt="Квартира №118 — фото 1" loading="lazy">
+                    </button>
+                    <button type="button" onclick="openApartmentModal(1, 2)">
+                        <img src="images/1.3.jpg" alt="Квартира №118 — фото 1" loading="lazy">
+                    </button>
+                    <button type="button" onclick="openApartmentModal(1, 3)">
+                        <img src="images/1.4.jpg" alt="Квартира №118 — фото 1" loading="lazy">
+                    </button>
+                    <button type="button" onclick="openApartmentModal(1, 4)">
+                        <img src="images/1.5.jpg" alt="Квартира №118 — фото 1" loading="lazy">
+                    </button>
+                    <button type="button" onclick="openApartmentModal(1, 5)">
+                        <img src="images/1.6.jpg" alt="Квартира №118 — фото 1" loading="lazy">
+                    </button>
+                    <button type="button" onclick="openApartmentModal(1, 6)">
+                        <img src="images/1.7.jpg" alt="Квартира №118 — фото 1" loading="lazy">
+                    </button>
+                </div>
+            </div>
+
+            <div class="apartment-info">
+                <div class="apartment-header">
+                    <span class="apartment-number">№118</span>
+                    <span class="apartment-type">Однокомнатная квартира</span>
+                </div>
+
+                <div class="apartment-price-row">
+                    <span class="apartment-price">4 000 ₽ / ночь</span>
+                    <span class="apartment-label">до 3 гостей</span>
+                </div>
+
+                <p class="apartment-location">
+                    ЖК «Белый ангел», Береговая 6, вид на набережную Дона.
+                </p>
+
+                <p class="apartment-description">
+                    Светлая однокомнатная квартира с панорамными окнами и мягким тёплым светом.
+                    Удобная двуспальная кровать, полноценная кухня, рабочее место и быстрый Wi-Fi —
+                    отличный вариант для пары или деловой поездки.
+                </p>
+
+                <ul class="apartment-features">
+                    <li>Двуспальная кровать king-size</li>
+                    <li>Полностью оборудованная кухня</li>
+                    <li>Стиральная машина и сушилка</li>
+                    <li>Скоростной Wi-Fi</li>
+                    <li>Бесконтактное заселение 24/7</li>
+                </ul>
+
+                <div class="apartment-actions">
+                    <button type="button" class="apartment-book-btn" onclick="openBookingModal('1')">
+                        Забронировать
+                    </button>
+                    <button type="button" class="apartment-more-btn" onclick="openApartmentModal(1)">
+                        Посмотреть все фото
+                    </button>
+                </div>
+            </div>
+        </article>
+
+        <!-- КВАРТИРА 2 -->
+        <article class="apartment-card" id="apartment-2">
+            <div class="apartment-photos">
+                <button class="apartment-main-photo" type="button" onclick="openApartmentModal(2, 0)">
+                    <img src="images/2.1.jpg"
+                         alt="Квартира №204 в ЖК «Белый ангел»" loading="lazy">
+                </button>
+                <div class="apartment-thumbs">
+                    <button type="button" onclick="openApartmentModal(2, 1)">
+                        <img src="images/2.2.jpg" alt="Квартира №204 — фото 1" loading="lazy">
+                    </button>
+                    <button type="button" onclick="openApartmentModal(2, 2)">
+                        <img src="images/2.3.jpg" alt="Квартира №204 — фото 1" loading="lazy">
+                    </button>
+                    <button type="button" onclick="openApartmentModal(2, 3)">
+                        <img src="images/2.4.jpg" alt="Квартира №204 — фото 1" loading="lazy">
+                    </button>
+                    <button type="button" onclick="openApartmentModal(2, 4)">
+                        <img src="images/2.5.jpg" alt="Квартира №204 — фото 1" loading="lazy">
+                    </button>
+                    <button type="button" onclick="openApartmentModal(2, 5)">
+                        <img src="images/2.6.jpg" alt="Квартира №204 — фото 1" loading="lazy">
+                    </button>
+                    <button type="button" onclick="openApartmentModal(2, 6)">
+                        <img src="images/2.7.jpg" alt="Квартира №204 — фото 1" loading="lazy">
+                    </button>
+                    
+                </div>
+            </div>
+
+            <div class="apartment-info">
+                <div class="apartment-header">
+                    <span class="apartment-number">№204</span>
+                    <span class="apartment-type">Однокомнатная с панорамными окнами</span>
+                </div>
+
+                <div class="apartment-price-row">
+                    <span class="apartment-price">4 200 ₽ / ночь</span>
+                    <span class="apartment-label">до 2 гостей</span>
+                </div>
+
+                <p class="apartment-location">
+                    ЖК «Белый ангел», 2 этаж, панорамные окна с видом на Дон.
+                </p>
+
+                <p class="apartment-description">
+                    Уютная квартира в светлых тонах с большой кроватью и панорамным остеклением.
+                    Идеально подойдёт для романтического уикенда или спокойного отдыха у воды.
+                </p>
+
+                <ul class="apartment-features">
+                    <li>Панорамный вид на набережную</li>
+                    <li>Большая двуспальная кровать</li>
+                    <li>Кофемашина и посудомойка</li>
+                    <li>Тихий этаж</li>
+                </ul>
+
+                <div class="apartment-actions">
+                    <button type="button" class="apartment-book-btn" onclick="openBookingModal('2')">
+                        Забронировать
+                    </button>
+                    <button type="button" class="apartment-more-btn" onclick="openApartmentModal(2)">
+                        Посмотреть все фото
+                    </button>
+                </div>
+            </div>
+        </article>
+
+        <!-- КВАРТИРА 3 -->
+        <article class="apartment-card" id="apartment-3">
+            <div class="apartment-photos">
+                <button class="apartment-main-photo" type="button" onclick="openApartmentModal(3, 0)">
+                    <img src="images/3.1.jpg"
+                         alt="Квартира №315 в ЖК «Белый ангел»" loading="lazy">
+                </button>
+                <div class="apartment-thumbs">
+                    <button type="button" onclick="openApartmentModal(3, 1)">
+                        <img src="images/3.2.jpg" alt="Квартира №315 — фото 1" loading="lazy">
+                    </button>
+                    <button type="button" onclick="openApartmentModal(3, 2)">
+                        <img src="images/3.3.jpg" alt="Квартира №315 — фото 1" loading="lazy">
+                    </button>
+                    <button type="button" onclick="openApartmentModal(3, 3)">
+                        <img src="images/3.8.jpg" alt="Квартира №315 — фото 1" loading="lazy">
+                    </button>
+                    <button type="button" onclick="openApartmentModal(3, 4)">
+                        <img src="images/3.9.jpg" alt="Квартира №315 — фото 1" loading="lazy">
+                    </button>
+                    <button type="button" onclick="openApartmentModal(3, 5)">
+                        <img src="images/3.6.jpg" alt="Квартира №315 — фото 1" loading="lazy">
+                    </button>
+                    <button type="button" onclick="openApartmentModal(3, 6)">
+                        <img src="images/3.7.jpg" alt="Квартира №315 — фото 1" loading="lazy">
+                    </button>
+                </div>
+            </div>
+
+            <div class="apartment-info">
+                <div class="apartment-header">
+                    <span class="apartment-number">№315</span>
+                    <span class="apartment-type">Однокомнатная с отдельной кухней</span>
+                </div>
+
+                <div class="apartment-price-row">
+                    <span class="apartment-price">4 500 ₽ / ночь</span>
+                    <span class="apartment-label">до 3 гостей</span>
+                </div>
+
+                <p class="apartment-location">
+                    ЖК «Белый ангел», 3 этаж, тихий подъезд, закрытый двор.
+                </p>
+
+                <p class="apartment-description">
+                    Домашняя атмосфера: отдельная кухня с обеденным столом, мягкий диван,
+                    вместительный шкаф и уютная спальня. Подойдёт для длительных поездок и семейных
+                    визитов в Ростов-на-Дону.
+                </p>
+
+                <ul class="apartment-features">
+                    <li>Отдельная кухня с обеденной зоной</li>
+                    <li>Раздвижной диван для дополнительного гостя</li>
+                    <li>Большой шкаф-гардероб</li>
+                    <li>Тихое расположение внутри двора</li>
+                </ul>
+
+                <div class="apartment-actions">
+                    <button type="button" class="apartment-book-btn" onclick="openBookingModal('3')">
+                        Забронировать
+                    </button>
+                    <button type="button" class="apartment-more-btn" onclick="openApartmentModal(3)">
+                        Посмотреть все фото
+                    </button>
+                </div>
+            </div>
+        </article>
+
+        <!-- КВАРТИРА 4 -->
+        <article class="apartment-card" id="apartment-4">
+            <div class="apartment-photos">
+                <button class="apartment-main-photo" type="button" onclick="openApartmentModal(4, 0)">
+                    <img src="images/4.1.jpg"
+                         alt="Квартира №402 в ЖК «Белый ангел»" loading="lazy">
+                </button>
+                <div class="apartment-thumbs">
+                    <button type="button" onclick="openApartmentModal(4, 1)">
+                        <img src="images/4.2.jpg" alt="Квартира №402 — фото 1" loading="lazy">
+                    </button>
+                    <button type="button" onclick="openApartmentModal(4, 2)">
+                        <img src="images/4.3.jpg" alt="Квартира №402 — фото 1" loading="lazy">
+                    </button>
+                    <button type="button" onclick="openApartmentModal(4, 3)">
+                        <img src="images/4.4.jpg" alt="Квартира №402 — фото 1" loading="lazy">
+                    </button>
+                    <button type="button" onclick="openApartmentModal(4, 4)">
+                        <img src="images/4.5.jpg" alt="Квартира №402 — фото 1" loading="lazy">
+                    </button>
+                    <button type="button" onclick="openApartmentModal(4, 5)">
+                        <img src="images/4.6.jpg" alt="Квартира №402 — фото 1" loading="lazy">
+                    </button>
+                    <button type="button" onclick="openApartmentModal(4, 6)">
+                        <img src="images/4.7.jpg" alt="Квартира №402 — фото 1" loading="lazy">
+                    </button>
+                </div>
+            </div>
+
+            <div class="apartment-info">
+                <div class="apartment-header">
+                    <span class="apartment-number">№402</span>
+                    <span class="apartment-type">Двухкомнатная квартира</span>
+                </div>
+
+                <div class="apartment-price-row">
+                    <span class="apartment-price">4 800 ₽ / ночь</span>
+                    <span class="apartment-label">до 4 гостей</span>
+                </div>
+
+                <p class="apartment-location">
+                    ЖК «Белый ангел», 4 этаж, рядом с лифтом и выходом к парковке.
+                </p>
+
+                <p class="apartment-description">
+                    Просторная двухкомнатная квартира: отдельная спальня, гостиная с диваном и
+                    большим телевизором, полноценная кухня. Отличный вариант для семьи с детьми или
+                    компании друзей.
+                </p>
+
+                <ul class="apartment-features">
+                    <li>Отдельная спальня с двуспальной кроватью</li>
+                    <li>Гостиная с раскладным диваном</li>
+                    <li>Обеденный стол на 4 человека</li>
+                    <li>Рядом подземный паркинг</li>
+                </ul>
+
+                <div class="apartment-actions">
+                    <button type="button" class="apartment-book-btn" onclick="openBookingModal('4')">
+                        Забронировать
+                    </button>
+                    <button type="button" class="apartment-more-btn" onclick="openApartmentModal(4)">
+                        Посмотреть все фото
+                    </button>
+                </div>
+            </div>
+        </article>
+
+        <!-- КВАРТИРА 5 -->
+        <article class="apartment-card" id="apartment-5">
+            <div class="apartment-photos">
+                <button class="apartment-main-photo" type="button" onclick="openApartmentModal(5, 0)">
+                    <img src="images/5.1.jpg"
+                         alt="Квартира №510 — студия в ЖК «Белый ангел»" loading="lazy">
+                </button>
+                <div class="apartment-thumbs">
+                    <button type="button" onclick="openApartmentModal(5, 1)">
+                        <img src="images/5.2.jpg" alt="Квартира №510 — фото 1" loading="lazy">
+                    </button>
+                    <button type="button" onclick="openApartmentModal(5, 2)">
+                        <img src="images/5.3.jpg" alt="Квартира №510 — фото 1" loading="lazy">
+                    </button>
+                    <button type="button" onclick="openApartmentModal(5, 3)">
+                        <img src="images/5.4.jpg" alt="Квартира №510 — фото 1" loading="lazy">
+                    </button>
+                    <button type="button" onclick="openApartmentModal(5, 4)">
+                        <img src="images/5.5.jpg" alt="Квартира №510 — фото 1" loading="lazy">
+                    </button>
+                    <button type="button" onclick="openApartmentModal(5, 5)">
+                        <img src="images/5.6.jpg" alt="Квартира №510 — фото 1" loading="lazy">
+                    </button>
+                    <button type="button" onclick="openApartmentModal(5, 6)">
+                        <img src="images/5.7.jpg" alt="Квартира №510 — фото 1" loading="lazy">
+                    </button>
+                </div>
+            </div>
+
+            <div class="apartment-info">
+                <div class="apartment-header">
+                    <span class="apartment-number">№510</span>
+                    <span class="apartment-type">Студия с видом во двор</span>
+                </div>
+
+                <div class="apartment-price-row">
+                    <span class="apartment-price">5 000 ₽ / ночь</span>
+                    <span class="apartment-label">до 2 гостей</span>
+                </div>
+
+                <p class="apartment-location">
+                    ЖК «Белый ангел», 5 этаж, вид на тихий внутренний двор и детскую площадку.
+                </p>
+
+                <p class="apartment-description">
+                    Компактная, но очень функциональная студия в современном стиле. Большая кровать,
+                    барная стойка, продуманное хранение вещей и уютный свет — идеальна для коротких
+                    поездок и уикендов.
+                </p>
+
+                <ul class="apartment-features">
+                    <li>Большая двуспальная кровать</li>
+                    <li>Барная стойка вместо стола</li>
+                    <li>Много мест для хранения</li>
+                    <li>Тихий вид во двор</li>
+                </ul>
+
+                <div class="apartment-actions">
+                    <button type="button" class="apartment-book-btn" onclick="openBookingModal('5')">
+                        Забронировать
+                    </button>
+                    <button type="button" class="apartment-more-btn" onclick="openApartmentModal(5)">
+                        Посмотреть все фото
+                    </button>
+                </div>
+            </div>
+        </article>
+
+        <!-- КВАРТИРА 6 -->
+        <article class="apartment-card" id="apartment-6">
+            <div class="apartment-photos">
+                <button class="apartment-main-photo" type="button" onclick="openApartmentModal(6, 0)">
+                    <img src="images/6.1.jpg"
+                         alt="Квартира №612 в ЖК «Белый ангел»" loading="lazy">
+                </button>
+                <div class="apartment-thumbs">
+                    <button type="button" onclick="openApartmentModal(6, 1)">
+                        <img src="images/6.2.jpg" alt="Квартира №612 — фото 1" loading="lazy">
+                    </button>
+                    <button type="button" onclick="openApartmentModal(6, 2)">
+                        <img src="images/6.3.jpg" alt="Квартира №612 — фото 1" loading="lazy">
+                    </button>
+                    <button type="button" onclick="openApartmentModal(6, 3)">
+                        <img src="images/6.4.jpg" alt="Квартира №612 — фото 1" loading="lazy">
+                    </button>
+                    <button type="button" onclick="openApartmentModal(6, 4)">
+                        <img src="images/6.5.jpg" alt="Квартира №612 — фото 1" loading="lazy">
+                    </button>
+                    <button type="button" onclick="openApartmentModal(6, 5)">
+                        <img src="images/6.6.jpg" alt="Квартира №612 — фото 1" loading="lazy">
+                    </button>
+                    <button type="button" onclick="openApartmentModal(6, 6)">
+                        <img src="images/6.7.jpg" alt="Квартира №612 — фото 1" loading="lazy">
+                    </button>
+                </div>
+            </div>
+
+            <div class="apartment-info">
+                <div class="apartment-header">
+                    <span class="apartment-number">№612</span>
+                    <span class="apartment-type">Однокомнатная с рабочим местом</span>
+                </div>
+
+                <div class="apartment-price-row">
+                    <span class="apartment-price">4 300 ₽ / ночь</span>
+                    <span class="apartment-label">до 2 гостей</span>
+                </div>
+
+                <p class="apartment-location">
+                    ЖК «Белый ангел», 6 этаж, рядом с фитнес-клубом и кофейней.
+                </p>
+
+                <p class="apartment-description">
+                    Квартира для тех, кто совмещает отдых и работу. Удобный стол у окна, удобное кресло,
+                    хорошее освещение и быстрый интернет — можно спокойно созваниваться и работать из дома.
+                </p>
+
+                <ul class="apartment-features">
+                    <li>Рабочее место у окна</li>
+                    <li>Стабильный скоростной Wi-Fi</li>
+                    <li>Рядом фитнес и кофейня</li>
+                    <li>Большой смарт-TV</li>
+                </ul>
+
+                <div class="apartment-actions">
+                    <button type="button" class="apartment-book-btn" onclick="openBookingModal('6')">
+                        Забронировать
+                    </button>
+                    <button type="button" class="apartment-more-btn" onclick="openApartmentModal(6)">
+                        Посмотреть все фото
+                    </button>
+                </div>
+            </div>
+        </article>
+
+        <!-- КВАРТИРА 7 -->
+        <article class="apartment-card" id="apartment-7">
+            <div class="apartment-photos">
+                <button class="apartment-main-photo" type="button" onclick="openApartmentModal(7, 0)">
+                    <img src="images/7.1.jpg"
+                         alt="Квартира №701 — уютная студия" loading="lazy">
+                </button>
+                <div class="apartment-thumbs">
+                    <button type="button" onclick="openApartmentModal(7, 1)">
+                        <img src="images/7.2.jpg" alt="Квартира №701 — фото 1" loading="lazy">
+                    </button>
+                    <button type="button" onclick="openApartmentModal(7, 2)">
+                        <img src="images/7.4.jpg" alt="Квартира №701 — фото 1" loading="lazy">
+                    </button>
+                    <button type="button" onclick="openApartmentModal(7, 3)">
+                        <img src="images/7.5.jpg" alt="Квартира №701 — фото 1" loading="lazy">
+                    </button>
+                    <button type="button" onclick="openApartmentModal(7, 4)">
+                        <img src="images/7.6.jpg" alt="Квартира №701 — фото 1" loading="lazy">
+                    </button>
+                    <button type="button" onclick="openApartmentModal(7, 5)">
+                        <img src="images/7.7.jpg" alt="Квартира №701 — фото 1" loading="lazy">
+                    </button>
+                    <button type="button" onclick="openApartmentModal(7, 6)">
+                        <img src="images/7.8.jpg" alt="Квартира №701 — фото 1" loading="lazy">
+                    </button>
+                    
+                </div>
+            </div>
+
+            <div class="apartment-info">
+                <div class="apartment-header">
+                    <span class="apartment-number">№701</span>
+                    <span class="apartment-type">Студия</span>
+                </div>
+
+                <div class="apartment-price-row">
+                    <span class="apartment-price">3 900 ₽ / ночь</span>
+                    <span class="apartment-label">до 2 гостей</span>
+                </div>
+
+                <p class="apartment-location">
+                    ЖК «Белый ангел», 7 этаж, недалеко от выхода к набережной.
+                </p>
+
+                <p class="apartment-description">
+                    Небольшая, но очень уютная студия в спокойной цветовой гамме.
+                    Подойдёт для тех, кто проводит день в городе, а вечером возвращается в тихое и
+                    комфортное пространство.
+                </p>
+
+                <ul class="apartment-features">
+                    <li>Уютная зона отдыха</li>
+                    <li>Небольшая, но функциональная кухня</li>
+                    <li>Удобный матрас средней жёсткости</li>
+                    <li>Самый выгодный тариф</li>
+                </ul>
+
+                <div class="apartment-actions">
+                    <button type="button" class="apartment-book-btn" onclick="openBookingModal('7')">
+                        Забронировать
+                    </button>
+                    <button type="button" class="apartment-more-btn" onclick="openApartmentModal(7)">
+                        Посмотреть все фото
+                    </button>
+                </div>
+            </div>
+        </article>
+
+        <!-- КВАРТИРА 8 -->
+        <article class="apartment-card" id="apartment-8">
+            <div class="apartment-photos">
+                <button class="apartment-main-photo" type="button" onclick="openApartmentModal(8, 0)">
+                    <img src="images/8.1.jpg"
+                         alt="Квартира №820 — двухкомнатная с видом на Дон" loading="lazy">
+                </button>
+                <div class="apartment-thumbs">
+                    <button type="button" onclick="openApartmentModal(8, 1)">
+                        <img src="images/8.2.jpg" alt="Квартира №820 — фото 1" loading="lazy">
+                    </button><button type="button" onclick="openApartmentModal(8, 2)">
+                        <img src="images/8.3.jpg" alt="Квартира №820 — фото 1" loading="lazy">
+                    </button><button type="button" onclick="openApartmentModal(8, 3)">
+                        <img src="images/8.4.jpg" alt="Квартира №820 — фото 1" loading="lazy">
+                    </button><button type="button" onclick="openApartmentModal(8, 4)">
+                        <img src="images/8.5.jpg" alt="Квартира №820 — фото 1" loading="lazy">
+                    </button><button type="button" onclick="openApartmentModal(8, 5)">
+                        <img src="images/8.6.jpg" alt="Квартира №820 — фото 1" loading="lazy">
+                    </button><button type="button" onclick="openApartmentModal(8, 6)">
+                        <img src="images/8.7.jpg" alt="Квартира №820 — фото 1" loading="lazy">
+                    </button>
+                </div>
+            </div>
+
+            <div class="apartment-info">
+                <div class="apartment-header">
+                    <span class="apartment-number">№820</span>
+                    <span class="apartment-type">Двухкомнатная квартира</span>
+                </div>
+
+                <div class="apartment-price-row">
+                    <span class="apartment-price">5 400 ₽ / ночь</span>
+                    <span class="apartment-label">до 5 гостей</span>
+                </div>
+
+                <p class="apartment-location">
+                    ЖК «Белый ангел», 8 этаж, окна на реку и набережную.
+                </p>
+
+                <p class="apartment-description">
+                    Большая квартира с двумя отдельными комнатами, просторной кухней и диваном в гостиной.
+                    Часто бронируют семьи и компании, которые хотят разместиться вместе и не делиться
+                    на разные квартиры.
+                </p>
+
+                <ul class="apartment-features">
+                    <li>Две отдельные спальни</li>
+                    <li>Раздельный санузел</li>
+                    <li>Большой обеденный стол</li>
+                    <li>Вид на реку Дон</li>
+                </ul>
+
+                <div class="apartment-actions">
+                    <button type="button" class="apartment-book-btn" onclick="openBookingModal('8')">
+                        Забронировать
+                    </button>
+                    <button type="button" class="apartment-more-btn" onclick="openApartmentModal(8)">
+                        Посмотреть все фото
+                    </button>
+                </div>
+            </div>
+        </article>
+
+        <!-- КВАРТИРА 9 -->
+        <article class="apartment-card" id="apartment-9">
+            <div class="apartment-photos">
+                <button class="apartment-main-photo" type="button" onclick="openApartmentModal(9, 0)">
+                    <img src="images/9.1.jpg"
+                         alt="Квартира №903 — однокомнатная квартира" loading="lazy">
+                </button>
+                <div class="apartment-thumbs">
+                    <button type="button" onclick="openApartmentModal(9, 1)">
+                        <img src="images/9.2.jpg" alt="Квартира №903 — фото 1" loading="lazy">
+                    </button>
+                    <button type="button" onclick="openApartmentModal(9, 2)">
+                        <img src="images/9.3.jpg" alt="Квартира №903 — фото 1" loading="lazy">
+                    </button>
+                    <button type="button" onclick="openApartmentModal(9, 3)">
+                        <img src="images/9.4.jpg" alt="Квартира №903 — фото 1" loading="lazy">
+                    </button>
+                    <button type="button" onclick="openApartmentModal(9, 4)">
+                        <img src="images/9.5.jpg" alt="Квартира №903 — фото 1" loading="lazy">
+                    </button>
+                    <button type="button" onclick="openApartmentModal(9, 5)">
+                        <img src="images/9.6.jpg" alt="Квартира №903 — фото 1" loading="lazy">
+                    </button>
+                    <button type="button" onclick="openApartmentModal(9, 6)">
+                        <img src="images/9.7.jpg" alt="Квартира №903 — фото 1" loading="lazy">
+                    </button>
+                </div>
+            </div>
+
+            <div class="apartment-info">
+                <div class="apartment-header">
+                    <span class="apartment-number">№903</span>
+                    <span class="apartment-type">Однокомнатная квартира</span>
+                </div>
+
+                <div class="apartment-price-row">
+                    <span class="apartment-price">4 700 ₽ / ночь</span>
+                    <span class="apartment-label">до 3 гостей</span>
+                </div>
+
+                <p class="apartment-location">
+                    ЖК «Белый ангел», 9 этаж, комбинированный вид на город и реку.
+                </p>
+
+                <p class="apartment-description">
+                    Современный интерьер, большая кровать и диван, на котором при необходимости можно
+                    разместить дополнительного гостя. Хороший вариант для поездки втроём.
+                </p>
+
+                <ul class="apartment-features">
+                    <li>Кровать + раскладной диван</li>
+                    <li>Смарт-TV с приложениями</li>
+                    <li>Кондиционер</li>
+                    <li>Развитая инфраструктура вокруг дома</li>
+                </ul>
+
+                <div class="apartment-actions">
+                    <button type="button" class="apartment-book-btn" onclick="openBookingModal('9')">
+                        Забронировать
+                    </button>
+                    <button type="button" class="apartment-more-btn" onclick="openApartmentModal(9)">
+                        Посмотреть все фото
+                    </button>
+                </div>
+            </div>
+        </article>
+
+        <!-- КВАРТИРА 10 -->
+        <article class="apartment-card" id="apartment-10">
+            <div class="apartment-photos">
+                <button class="apartment-main-photo" type="button" onclick="openApartmentModal(10, 0)">
+                    <img src="images/10.1.jpg"
+                         alt="Квартира №1001 — просторная двухкомнатная" loading="lazy">
+                </button>
+                <div class="apartment-thumbs">
+                    <button type="button" onclick="openApartmentModal(10, 1)">
+                        <img src="images/10.2.jpg" alt="Квартира №1001 — фото 1" loading="lazy">
+                    </button>
+                    <button type="button" onclick="openApartmentModal(10, 2)">
+                        <img src="images/10.3.jpg" alt="Квартира №1001 — фото 1" loading="lazy">
+                    </button>
+                    <button type="button" onclick="openApartmentModal(10, 3)">
+                        <img src="images/10.4.jpg" alt="Квартира №1001 — фото 1" loading="lazy">
+                    </button>
+                    <button type="button" onclick="openApartmentModal(10, 4)">
+                        <img src="images/10.5.jpg" alt="Квартира №1001 — фото 1" loading="lazy">
+                    </button>
+                    <button type="button" onclick="openApartmentModal(10, 5)">
+                        <img src="images/10.6.jpg" alt="Квартира №1001 — фото 1" loading="lazy">
+                    </button>
+                    <button type="button" onclick="openApartmentModal(10, 6)">
+                        <img src="images/10.7.jpg" alt="Квартира №1001 — фото 1" loading="lazy">
+                    </button>
+                </div>
+            </div>
+
+            <div class="apartment-info">
+                <div class="apartment-header">
+                    <span class="apartment-number">№1001</span>
+                    <span class="apartment-type">Двухкомнатная квартира</span>
+                </div>
+
+                <div class="apartment-price-row">
+                    <span class="apartment-price">5 900 ₽ / ночь</span>
+                    <span class="apartment-label">до 6 гостей</span>
+                </div>
+
+                <p class="apartment-location">
+                    ЖК «Белый ангел», 10 этаж, верхние уровни комплекса, панорамные виды.
+                </p>
+
+                <p class="apartment-description">
+                    Самая просторная квартира в подборке: две спальни, большая гостиная и кухня,
+                    за которой удобно собираться компанией. Панорамные окна дают много света и ощущение
+                    пространства.
+                </p>
+
+                <ul class="apartment-features">
+                    <li>До 6 спальных мест</li>
+                    <li>Две полноценные спальни</li>
+                    <li>Панорамный вид на город и набережную</li>
+                    <li>Подойдёт для большого семейного отдыха</li>
+                </ul>
+
+                <div class="apartment-actions">
+                    <button type="button" class="apartment-book-btn" onclick="openBookingModal('10')">
+                        Забронировать
+                    </button>
+                    <button type="button" class="apartment-more-btn" onclick="openApartmentModal(10)">
+                        Посмотреть все фото
+                    </button>
+                </div>
+            </div>
+        </article>
+
+    </div>
+</section>
+                
+
+                <!-- ... и так далее для всех 10 квартир -->
+
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>© 2024 DonSide. Все права защищены.</p>
+        </div>
+    </footer>
+
+    <!-- Модальное окно деталей квартиры -->
+    <div id="apartmentModal" class="apartment-modal">
+        <div class="modal-overlay" onclick="closeApartmentModal()"></div>
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeApartmentModal()" aria-label="Закрыть галерею">×</button>
+            
+            <div class="modal-gallery">
+                <!-- Галерея заполняется через JS -->
+            </div>
+            
+            <div class="modal-thumbnails" id="modalThumbnails">
+                <!-- Миниатюры через JS -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Модальное окно бронирования -->
+    <div id="bookingModal" class="booking-modal">
+        <div class="modal-overlay" onclick="closeBookingModal()"></div>
+        <div class="booking-modal-content">
+            <button class="modal-close" onclick="closeBookingModal()" aria-label="Закрыть форму бронирования">×</button>
+            
+            <div class="booking-header">
+                <h2>Забронировать квартиру</h2>
+                <p>Заполните форму ниже и мы свяжемся с вами для подтверждения</p>
+            </div>
+
+            <div class="booking-notice">
+                <div class="notice-icon">⏱️</div>
+                <p>Мы подтвердим ваше бронирование в течение 30 минут после получения заявки</p>
+            </div>
+
+            <form class="booking-form" id="bookingForm">
+    <!-- Блок: даты -->
+    <div class="form-section-title">Даты проживания</div>
+    <div class="form-row">
+        <div class="form-group">
+            <label for="bookingCheckin">Дата заезда *</label>
+            <input type="date" id="bookingCheckin" name="checkin" required>
+        </div>
+        <div class="form-group">
+            <label for="bookingCheckout">Дата выезда *</label>
+            <input type="date" id="bookingCheckout" name="checkout" required>
+        </div>
+    </div>
+
+    <!-- Блок: выбор квартиры -->
+    <div class="form-section-title">Квартира</div>
+    <div class="form-group">
+        <label for="bookingApartment">Выберите квартиру *</label>
+        <select id="bookingApartment" name="apartment" required>
+            <option value="">-- Выберите квартиру --</option>
+            <option value="1">Квартира 1 - 4 000 ₽/ночь</option>
+            <option value="2">Квартира 2 - 4 000 ₽/ночь</option>
+            <option value="3">Квартира 3 - 4 000 ₽/ночь</option>
+            <option value="4">Квартира 4 - 4 000 ₽/ночь</option>
+            <option value="5">Квартира 5 - 4 000 ₽/ночь</option>
+        </select>
+    </div>
+
+    <!-- Блок: контакты -->
+    <div class="form-section-title">Контактные данные</div>
+    <div class="form-row">
+        <div class="form-group">
+            <label for="bookingName">Ваше имя *</label>
+            <input type="text" id="bookingName" name="name" placeholder="Иван Иванов" required>
+        </div>
+        <div class="form-group">
+            <label for="bookingPhone">Телефон *</label>
+            <input type="tel" id="bookingPhone" name="phone" placeholder="+7 (999) 123-45-67" required>
+            <span class="phone-hint">Формат: +7 (999) 123-45-67</span>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="bookingEmail">Email</label>
+        <input type="email" id="bookingEmail" name="email" placeholder="ivan@example.com">
+    </div>
+
+    <!-- Блок: доп. информация -->
+    <div class="form-section-title">Дополнительно</div>
+    <div class="form-group">
+        <label for="bookingGuests">Количество гостей</label>
+        <select id="bookingGuests" name="guests">
+            <option value="1">1 гость</option>
+            <option value="2" selected>2 гостя</option>
+            <option value="3">3 гостя</option>
+            <option value="4">4 гостя</option>
+            <option value="5">5 гостей</option>
+            <option value="6">6 гостей</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="bookingComment">Комментарий к бронированию</label>
+        <textarea id="bookingComment" name="comment" placeholder="Дополнительные пожелания..." rows="3"></textarea>
+    </div>
+
+    <div class="form-submit">
+        <button type="submit" class="submit-btn">
+            <span class="btn-text">Отправить заявку на бронирование</span>
+            <span class="btn-loading">
+                <span class="loading-spinner"></span>
+                Отправляем...
+            </span>
+        </button>
+        <p class="form-note">* Обязательные поля для заполнения</p>
+    </div>
+</form>
+        </div>
+    </div>
+
+    <!-- ПОДВАЛ и два модальных окна (apartmentModal и bookingModal)
+         можно просто подключить те же, что уже есть в index.html -->
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -19,19 +19,21 @@
     <!-- ШАПКА -->
     <header class="header" role="banner">
         <div class="header-container">
-            <a href="#" class="logo" aria-label="DonSide - главная страница">
+            <a href="index.html" class="logo" aria-label="DonSide - главная страница">
                 <span class="logo-symbol">D</span>
                 <span class="logo-text">onSide</span>
             </a>
             
             <nav class="nav" role="navigation" aria-label="Основное меню">
-                <ul class="nav-list">
-                    <li><a href="#about" aria-label="О нашей компании">О нас</a></li>
-                    <li><a href="#rooms" aria-label="Посмотреть квартиры">Квартиры</a></li>
-                    <li><a href="#contacts" aria-label="Контактная информация">Контакты</a></li>
-                </ul>
-                <button class="menu-toggle" id="menuToggle" aria-label="Открыть меню" aria-expanded="false">☰</button>
-            </nav>
+            <ul class="nav-list">
+                <!-- якоря внутри главной -->
+                <li><a href="index.html#about" aria-label="О нашей компании">О нас</a></li>
+                <!-- ссылка на страницу со всеми квартирами -->
+                <li><a href="apartments.html" aria-label="Посмотреть все квартиры">Квартиры</a></li>
+                <li><a href="index.html#contacts" aria-label="Контактная информация">Контакты</a></li>
+            </ul>
+            <button class="menu-toggle" id="menuToggle" aria-label="Открыть меню" aria-expanded="false">☰</button>
+        </nav>
             
             <button class="book-btn" aria-label="Забронировать квартиру">Забронировать</button>
         </div>
@@ -44,7 +46,7 @@
             <p class="hero-subtitle">
                 Ваш комфортный и безопасный отдых в сердце Ростова-на-Дону начинается с бесконтактного заселения 24/7
             </p>
-            <button class="cta-button">Выбрать квартиру</button>
+            <a href="apartments.html" class="cta-button">Выбрать квартиру</a>
         </div>
     </section>
 
@@ -120,6 +122,7 @@
                     <button class="rooms-slider-btn" type="button" id="roomsSliderMore">
                         Узнать больше
                     </button>
+                    
                 </div>
 
                 <button class="rooms-slider-arrow rooms-slider-arrow-prev" type="button" aria-label="Предыдущая квартира">‹</button>
@@ -235,74 +238,82 @@
             </div>
 
             <form class="booking-form" id="bookingForm">
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="bookingCheckin">Дата заезда *</label>
-                        <input type="date" id="bookingCheckin" name="checkin" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="bookingCheckout">Дата выезда *</label>
-                        <input type="date" id="bookingCheckout" name="checkout" required>
-                    </div>
-                </div>
+    <!-- Блок: даты -->
+    <div class="form-section-title">Даты проживания</div>
+    <div class="form-row">
+        <div class="form-group">
+            <label for="bookingCheckin">Дата заезда *</label>
+            <input type="date" id="bookingCheckin" name="checkin" required>
+        </div>
+        <div class="form-group">
+            <label for="bookingCheckout">Дата выезда *</label>
+            <input type="date" id="bookingCheckout" name="checkout" required>
+        </div>
+    </div>
 
-                <div class="form-group">
-                    <label for="bookingApartment">Выберите квартиру *</label>
-                    <select id="bookingApartment" name="apartment" required>
-                        <option value="">-- Выберите квартиру --</option>
-                        <option value="1">Квартира 1 - 4 000 ₽/ночь</option>
-                        <option value="2">Квартира 2 - 4 000 ₽/ночь</option>
-                        <option value="3">Квартира 3 - 4 000 ₽/ночь</option>
-                        <option value="4">Квартира 4 - 4 000 ₽/ночь</option>
-                        <option value="5">Квартира 5 - 4 000 ₽/ночь</option>
-                    </select>
-                </div>
+    <!-- Блок: выбор квартиры -->
+    <div class="form-section-title">Квартира</div>
+    <div class="form-group">
+        <label for="bookingApartment">Выберите квартиру *</label>
+        <select id="bookingApartment" name="apartment" required>
+            <option value="">-- Выберите квартиру --</option>
+            <option value="1">Квартира 1 - 4 000 ₽/ночь</option>
+            <option value="2">Квартира 2 - 4 000 ₽/ночь</option>
+            <option value="3">Квартира 3 - 4 000 ₽/ночь</option>
+            <option value="4">Квартира 4 - 4 000 ₽/ночь</option>
+            <option value="5">Квартира 5 - 4 000 ₽/ночь</option>
+        </select>
+    </div>
 
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="bookingName">Ваше имя *</label>
-                        <input type="text" id="bookingName" name="name" placeholder="Иван Иванов" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="bookingPhone">Телефон *</label>
-                        <input type="tel" id="bookingPhone" name="phone" placeholder="+7 (999) 123-45-67" required>
-                        <span class="phone-hint">Формат: +7 (999) 123-45-67</span>
-                    </div>
-                </div>
+    <!-- Блок: контакты -->
+    <div class="form-section-title">Контактные данные</div>
+    <div class="form-row">
+        <div class="form-group">
+            <label for="bookingName">Ваше имя *</label>
+            <input type="text" id="bookingName" name="name" placeholder="Иван Иванов" required>
+        </div>
+        <div class="form-group">
+            <label for="bookingPhone">Телефон *</label>
+            <input type="tel" id="bookingPhone" name="phone" placeholder="+7 (999) 123-45-67" required>
+            <span class="phone-hint">Формат: +7 (999) 123-45-67</span>
+        </div>
+    </div>
 
-                <div class="form-group">
-                    <label for="bookingEmail">Email</label>
-                    <input type="email" id="bookingEmail" name="email" placeholder="ivan@example.com">
-                </div>
+    <div class="form-group">
+        <label for="bookingEmail">Email</label>
+        <input type="email" id="bookingEmail" name="email" placeholder="ivan@example.com">
+    </div>
 
-                <div class="form-group">
-                    <label for="bookingGuests">Количество гостей</label>
-                    <select id="bookingGuests" name="guests">
-                        <option value="1">1 гость</option>
-                        <option value="2" selected>2 гостя</option>
-                        <option value="3">3 гостя</option>
-                        <option value="4">4 гостя</option>
-                        <option value="5">5 гостей</option>
-                        <option value="6">6 гостей</option>
-                    </select>
-                </div>
+    <!-- Блок: доп. информация -->
+    <div class="form-section-title">Дополнительно</div>
+    <div class="form-group">
+        <label for="bookingGuests">Количество гостей</label>
+        <select id="bookingGuests" name="guests">
+            <option value="1">1 гость</option>
+            <option value="2" selected>2 гостя</option>
+            <option value="3">3 гостя</option>
+            <option value="4">4 гостя</option>
+            <option value="5">5 гостей</option>
+            <option value="6">6 гостей</option>
+        </select>
+    </div>
 
-                <div class="form-group">
-                    <label for="bookingComment">Комментарий к бронированию</label>
-                    <textarea id="bookingComment" name="comment" placeholder="Дополнительные пожелания..." rows="3"></textarea>
-                </div>
+    <div class="form-group">
+        <label for="bookingComment">Комментарий к бронированию</label>
+        <textarea id="bookingComment" name="comment" placeholder="Дополнительные пожелания..." rows="3"></textarea>
+    </div>
 
-                <div class="form-submit">
-                    <button type="submit" class="submit-btn">
-                        <span class="btn-text">Отправить заявку на бронирование</span>
-                        <span class="btn-loading">
-                            <span class="loading-spinner"></span>
-                            Отправляем...
-                        </span>
-                    </button>
-                    <p class="form-note">* Обязательные поля для заполнения</p>
-                </div>
-            </form>
+    <div class="form-submit">
+        <button type="submit" class="submit-btn">
+            <span class="btn-text">Отправить заявку на бронирование</span>
+            <span class="btn-loading">
+                <span class="loading-spinner"></span>
+                Отправляем...
+            </span>
+        </button>
+        <p class="form-note">* Обязательные поля для заполнения</p>
+    </div>
+</form>
         </div>
     </div>
 
