@@ -227,6 +227,45 @@ body {
     font-weight: 700;
 }
 
+.faq {
+    padding: 5rem 0;
+    background: #f9fafb;
+}
+
+.faq-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.faq-item {
+    background: #ffffff;
+    border-radius: 16px;
+    padding: 1.8rem;
+    border: 1px solid #e5e7eb;
+    box-shadow: 0 10px 30px rgba(15, 23, 42, 0.04);
+}
+
+.faq-item h3 {
+    margin: 0 0 0.8rem;
+    font-size: 1.2rem;
+    color: var(--dark);
+}
+
+.faq-item p {
+    margin: 0;
+    font-size: 0.98rem;
+    color: var(--secondary);
+    line-height: 1.6;
+}
+
+@media (max-width: 768px) {
+    .faq-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
 /* About Section */
 .about {
     padding: 6rem 0;
@@ -1010,6 +1049,63 @@ body {
     flex-shrink: 0;
 }
 
+/* Контейнер иконки */
+.contact-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: #f5f7fb;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 12px rgba(15, 35, 52, 0.08);
+}
+
+.contact-icon--telegram {
+    background: none; /* фон в SVG */
+    padding: 0;
+}
+
+/* Сам SVG-логотип */
+.telegram-icon {
+    width: 40px;
+    height: 40px;
+}
+
+/* Подпись (“Telegram”) */
+.contact-label {
+    font-size: 16px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 4px;
+}
+
+/* Обычный текст + ссылки */
+.contact-details p,
+.contact-value {
+    font-size: 1rem;          /* как у адреса */
+    line-height: 1.4;
+    color: var(--secondary);  /* как у адреса */
+    font-weight: 400;
+}
+
+.contact-value--link {
+    text-decoration: none;
+    color: #5f6c7b;
+}
+
+/* Опционально — аккуратный ховер */
+.contact-value--link:hover {
+    color: #f89b1b;   /* можешь убрать, если не нужен эффект */
+}
+/* Контейнер текста */
+.contact-text {
+    display: flex;
+    flex-direction: column;
+}
+
+
+
 .contact-details strong {
     display: block;
     margin-bottom: 0.5rem;
@@ -1675,6 +1771,15 @@ submit-btn.loading .btn-loading {
 .rooms-carousel .carousel-viewport { overflow: hidden; }
 .rooms-carousel .carousel-track { will-change: transform; display: flex; gap: 16px; transition: transform .35s ease; }
 
+/* плавный скролл по якорям */
+html {
+  scroll-behavior: smooth;
+}
+
+/* небольшой отступ сверху при переходе по #apartment-1 и т.д. */
+.apartment-card {
+  scroll-margin-top: 100px; /* можно подогнать под высоту твоей шапки */
+}
 
 /* Страница со всеми квартирами */
 .apartments-page {

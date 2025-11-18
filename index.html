@@ -144,59 +144,132 @@
         </div>
     </section>
 
-    <!-- КОНТАКТЫ -->
-    <section id="contacts" class="contacts">
-        <div class="container">
-            <h2 class="section-title">Контакты</h2>
-            <div class="contacts-grid">
-                <div class="contact-info">
-                    <h3>Свяжитесь с нами</h3>
-                    <div class="contact-item">
-                        <div class="contact-icon">📞</div>
-                        <div class="contact-details">
-                            <strong>Телефон</strong>
-                            <p>+7 (999) 123-45-67</p>
-                            <p>+7 (988) 765-43-21</p>
-                        </div>
-                    </div>
-                    <div class="contact-item">
-                        <div class="contact-icon">✉️</div>
-                        <div class="contact-details">
-                            <strong>Email</strong>
-                            <p>info@donside.ru</p>
-                        </div>
-                    </div>
-                    <div class="contact-item">
-                        <div class="contact-icon">📍</div>
-                        <div class="contact-details">
-                            <strong>Адрес</strong>
-                            <p>г. Ростов-на-Дону, ЖК "Белый ангел"</p>
-                            <p>Набережная реки Дон</p>
-                        </div>
-                    </div>
-                    <div class="contact-item">
-                        <div class="contact-icon">🕒</div>
-                        <div class="contact-details">
-                            <strong>Время связи</strong>
-                            <p>Круглосуточно, 24/7</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="contact-map">
-                    <iframe
-                        title="Карта расположения DonSide" 
-                        src="https://yandex.ru/map-widget/v1/?ll=39.703766%2C47.212555&z=16&pt=39.703766%2C47.212555,pm2dgl&l=map" 
-                        width="100%" 
-                        height="400" 
-                        frameborder="0" 
-                        allowfullscreen="true"
-                        style="border-radius: 12px;">
-                    </iframe>
-                </div>
+    <section class="faq">
+    <div class="container">
+        <h2 class="section-title">О бронировании</h2>
+
+        <div class="faq-grid">
+            <div class="faq-item">
+                <h3>Как происходит заселение?</h3>
+                <p>
+                    Мы заранее отправляем вам подробную инструкцию с фото и видео.
+                    Заселение бесконтактное: вы самостоятельно проходите на территорию и поднимаетесь в апартаменты.
+                </p>
+            </div>
+
+            <div class="faq-item">
+                <h3>Во сколько можно заехать и выехать?</h3>
+                <p>
+                    Стандартное время заезда — с 14:00, выезд — до 12:00.
+                    Если нужна ранняя или поздняя заселение/выезд, по возможности подстраиваемся под вас.
+                </p>
+            </div>
+
+            <div class="faq-item">
+                <h3>Нужен ли залог?</h3>
+                <p>
+                    В большинстве случаев залог не требуется.
+                    Для больших компаний и длительных заездов условия обсуждаются индивидуально.
+                </p>
+            </div>
+
+            <div class="faq-item">
+                <h3>Как подтвердить бронирование?</h3>
+                <p>
+                    После заявки мы связываемся с вами и подтверждаем бронирование.
+                    При необходимости можем попросить предоплату за первую ночь удобным способом.
+                </p>
             </div>
         </div>
-    </section>
+    </div>
+</section>
+
+
+    <!-- КОНТАКТЫ -->
+<section id="contacts" class="contacts">
+    <div class="container">
+        <h2 class="section-title">Контакты</h2>
+
+        <div class="contacts-grid">
+
+            <!-- Левая колонка -->
+            <div class="contact-info">
+                <h3>Свяжитесь с нами</h3>
+
+                <!-- Телефон -->
+                <div class="contact-item">
+                    <div class="contact-icon">📞</div>
+                    <div class="contact-details">
+                        <strong>Телефон</strong>
+                        <a href="tel:+79885694909" class="contact-value contact-value--link">
+                        +7 (988) 569-49-09
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Telegram -->
+                <div class="contact-item">
+                    <div class="contact-icon contact-icon--telegram">
+                        <img src="images/telegram.svg" alt="Telegram" class="telegram-icon"/>
+                    </div>
+                    <div class="contact-details">
+                        <strong>Telegram</strong>
+                        <a href="https://web.telegram.org/k/?account=2#@donside161" 
+                           target="_blank"
+                           class="contact-value contact-value--link">
+                           Написать в Telegram
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Email -->
+                <div class="contact-item">
+                    <div class="contact-icon">✉️</div>
+                    <div class="contact-details">
+                        <strong>Email</strong>
+                        <a href="mailto:info@donside.ru" class="contact-value contact-value--link">
+                        info@donside.ru
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Адрес -->
+                <div class="contact-item">
+                    <div class="contact-icon">📍</div>
+                    <div class="contact-details">
+                        <strong>Адрес</strong>
+                        <p>г. Ростов-на-Дону, ЖК "Белый ангел"</p>
+                        <p>Набережная реки Дон</p>
+                    </div>
+                </div>
+
+                <!-- Время -->
+                <div class="contact-item">
+                    <div class="contact-icon">🕒</div>
+                    <div class="contact-details">
+                        <strong>Время связи</strong>
+                        <p>Круглосуточно, 24/7</p>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Правая колонка (карта) -->
+            <div class="contact-map">
+                <iframe
+                    title="Карта расположения DonSide"
+                    src="https://yandex.ru/map-widget/v1/?ll=39.703766%2C47.212555&z=16&pt=39.703766%2C47.212555,pm2dgl&l=map"
+                    width="100%"
+                    height="400"
+                    frameborder="0"
+                    allowfullscreen="true"
+                    style="border-radius: 12px;">
+                </iframe>
+            </div>
+
+        </div>
+    </div>
+</section>
 
     <!-- ПОДВАЛ -->
     <footer class="footer">

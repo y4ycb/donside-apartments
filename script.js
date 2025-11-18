@@ -394,14 +394,16 @@ function setupRoomsSlider() {
     });
   }
 
-  // Кнопка "Узнать больше" — открываем бронь с выбранной квартирой
-  if (moreBtn) {
-    moreBtn.addEventListener("click", () => {
-      const apt = apartments[currentIndex];
-      if (!apt) return;
-      openBookingModal(String(apt.id));
-    });
-  }
+  // Кнопка "Узнать больше" — переходим на страницу с нужной квартирой
+if (moreBtn) {
+  moreBtn.addEventListener("click", () => {
+    const apt = apartments[currentIndex];
+    if (!apt) return;
+
+    // Переход на apartments.html с прокруткой к нужной карточке
+    window.location.href = `apartments.html#apartment-${apt.id}`;
+  });
+}
 
   // Клик по большому фото — галерея по квартире
   img.addEventListener("click", () => {
