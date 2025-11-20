@@ -696,11 +696,11 @@ async function sendToTelegram(formData) {
 ⏰ Время: ${new Date().toLocaleString()}
   `.trim();
 
-  const r = await fetch("/api/booking", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ message })
-  });
+  const r = await fetch("send_booking.php", {
+  method: "POST",
+  headers: { "Content-Type": "application/json" },
+  body: JSON.stringify({ message })/*  */
+});
 
   const data = await r.json();
   return data.ok;
