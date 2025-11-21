@@ -555,6 +555,7 @@ function updateGallery() {
   if (!gallery || !thumbnails || !currentApartment || !currentApartment.images.length)
     return;
 
+  // Рендерим основное изображение + стрелки
   gallery.innerHTML = `
     <div class="main-image-container">
       <img src="${currentApartment.images[currentImageIndex]}"
@@ -566,6 +567,15 @@ function updateGallery() {
     </div>
   `;
 
+  // 👉 ДОБАВЛЯЕМ: клик по большой картинке листает вперёд
+  const mainImage = gallery.querySelector(".main-image");
+  if (mainImage) {
+    mainImage.addEventListener("click", () => {
+      nextImage();
+    });
+  }
+
+  // Перерисовываем миниатюры
   thumbnails.innerHTML = "";
   currentApartment.images.forEach((imageSrc, index) => {
     const thumb = document.createElement("img");
