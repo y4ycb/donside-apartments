@@ -362,36 +362,42 @@ function setupRoomsSlider() {
   const prevBtn = document.querySelector(".rooms-slider-arrow-prev");
   const nextBtn = document.querySelector(".rooms-slider-arrow-next");
 
-  // Если секции нет на странице — выходим без ошибок
+  // Если блока нет — ничего не делаем
   if (!img || !dotsBox) return;
 
-  const dots = dotsBox.querySelectorAll(".rooms-dot");
+  const dots = Array.from(dotsBox.querySelectorAll(".rooms-dot"));
+
+  // Формируем список квартир ДЛЯ СЛАЙДЕРА по точкам
+  const heroApartments = dots
+    .map((dot) => {
+      const id = Number(dot.dataset.apartmentId);
+      return apartments.find((a) => a.id === id);
+    })
+    .filter(Boolean);
+
+  if (heroApartments.length === 0) return;
+
   let currentIndex = 0;
 
   function showByIndex(i) {
-    const apt = apartments[i];
+    const apt = heroApartments[i];
     if (!apt) return;
 
     currentIndex = i;
 
-    // Обновляем точку
-    dots.forEach((d) => d.classList.remove("active"));
-    if (dots[i]) dots[i].classList.add("active");
+    img.src = apt.images && apt.images.length ? apt.images[0] : "";
+    priceEl.textContent = apt.price || "";
+    numEl.textContent = apt.number || "";
+    typeEl.textContent = apt.type || "";
+    locEl.textContent = apt.location || "";
 
-    // Обновляем картинку и текст
-    if (apt.images && apt.images.length) {
-      img.src = apt.images[0];
-    }
-    img.alt = `${apt.title} — фото`;
-    img.dataset.apartmentId = String(apt.id);
-
-    if (priceEl) priceEl.textContent = apt.price;
-    if (numEl) numEl.textContent = apt.number;
-    if (typeEl) typeEl.textContent = apt.type;
-    if (locEl) locEl.textContent = apt.location;
+    // подсветка точек
+    dots.forEach((dot, idx) => {
+      dot.classList.toggle("active", idx === i);
+    });
   }
 
-  // Клики по точкам
+  // Клик по точкам
   dots.forEach((dot, index) => {
     dot.addEventListener("click", () => {
       showByIndex(index);
@@ -401,37 +407,36 @@ function setupRoomsSlider() {
   // Стрелки
   if (prevBtn) {
     prevBtn.addEventListener("click", () => {
-      const i = (currentIndex - 1 + apartments.length) % apartments.length;
+      const i =
+        (currentIndex - 1 + heroApartments.length) % heroApartments.length;
       showByIndex(i);
     });
   }
 
   if (nextBtn) {
     nextBtn.addEventListener("click", () => {
-      const i = (currentIndex + 1) % apartments.length;
+      const i = (currentIndex + 1) % heroApartments.length;
       showByIndex(i);
     });
   }
 
-  // Кнопка "Узнать больше" — переходим на страницу с нужной квартирой
-if (moreBtn) {
-  moreBtn.addEventListener("click", () => {
-    const apt = apartments[currentIndex];
-    if (!apt) return;
+  // Кнопка "Узнать больше" — бронь выбранной квартиры
+  if (moreBtn) {
+    moreBtn.addEventListener("click", () => {
+      const apt = heroApartments[currentIndex];
+      if (!apt) return;
+      openBookingModal(String(apt.id));
+    });
+  }
 
-    // Переход на apartments.html с прокруткой к нужной карточке
-    window.location.href = `apartments.html#apartment-${apt.id}`;
-  });
-}
-
-  // Клик по большому фото — галерея по квартире
+  // Клик по картинке — модалка с фото квартиры
   img.addEventListener("click", () => {
-    const apt = apartments[currentIndex];
+    const apt = heroApartments[currentIndex];
     if (!apt) return;
     openApartmentModal(apt.id);
   });
 
-  // Старт
+  // Показать первую квартиру
   showByIndex(0);
 }
 
