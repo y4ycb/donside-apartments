@@ -15,16 +15,17 @@ jobs:
       - name: Deploy via FTP
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
-          server: ${{ secrets.FTP_SERVER }}
-          username: ${{ secrets.FTP_USERNAME }}
-          password: ${{ secrets.FTP_PASSWORD }}
-          protocol: ftps
-          port: 21
-          server-dir: ${{ secrets.FTP_SERVER_DIR }}
-          timeout: 600
-          exclude: |
-            **/.git*
-            **/.github/**
-            **/*.md
-            **/node_modules/**
-            **/README.md
+      server: ${{ secrets.FTP_SERVER }}
+      username: ${{ secrets.FTP_USERNAME }}
+      password: ${{ secrets.FTP_PASSWORD }}
+      protocol: ftps
+      port: 21
+      server-dir: ${{ secrets.FTP_SERVER_DIR }}
+      timeout: 1200          # <- было 600 или по умолчанию, ставим 1200 (20 минут)
+      max-tries: 3           # <- попытаться до 3 раз, если отвалилось
+      exclude: |
+        **/.git*
+        **/.github/**
+        **/*.md
+        **/node_modules/**
+        **/README.md
