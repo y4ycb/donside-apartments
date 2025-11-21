@@ -253,7 +253,7 @@ const apartments = [
     id: 14,
     title: "Квартира 14",
     price: "3 000 ₽",
-    number: "№13",
+    number: "№14",
     type: "Двухкомнатная квартира с панорамой на р. Дон",
     location: "ЖК «Белый ангел», Береговая 6",
     images: ["images/14.1.jpg",
