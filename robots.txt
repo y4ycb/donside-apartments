@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://donside.ru/sitemap.xml
+Host: donside.ru
