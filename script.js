@@ -620,6 +620,9 @@ function closeApartmentModal() {
 
 // ====== МОДАЛКА БРОНИ ======
 function openBookingModal(apartmentId = "") {
+    if (typeof ym === "function") {
+    ym(105454602, "reachGoal", "open_booking_modal");
+  }
   const modal = document.getElementById("bookingModal");
   if (!modal) return;
 
